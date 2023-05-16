@@ -1,8 +1,17 @@
-import { Url } from "../typedefs/UrlType";
+import {UrlType } from "../typedefs/UrlType";
 
-export const VisitorUrl: [Url] = [
+export const VisitorUrl: UrlType[]= [
     {
-        title: '',
-        link: ''
+        title: 'Home',
+        link: '/',
+
+    },
+    {
+        title: 'login',
+        link: '/login',
+    },
+    {
+        title: 'Sign up',
+        link: '/sign-up',
     }
 ]
