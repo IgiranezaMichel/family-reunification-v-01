@@ -4,7 +4,7 @@ import { VisitorUrl } from "../../url/VisitorsUrl"
 export const Index=()=>{
     return(
         <>
-            <Navigation items={VisitorUrl}>
+            <Navigation activeUrl="home" items={VisitorUrl} navBarClass={'bg-info text-white'} >
         
             </Navigation>
         </>
