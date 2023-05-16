@@ -1,11 +1,9 @@
-import { ReactNode } from "react"
-import { StyleSheetProperties } from "react-native"
+import { CSSProperties, ReactNode } from "react"
 
-export type Url={
+export type UrlType={
     title:string,
     link:string,
     icon?:ReactNode,
-    style?:StyleSheetProperties,
+    style?:CSSProperties,
     class?:ClassDecorator,
-    active?:string
 }
