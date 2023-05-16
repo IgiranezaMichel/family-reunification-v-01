@@ -2,21 +2,22 @@ import { Link } from "react-router-dom"
 import { UrlType } from "../typedefs/UrlType"
 import { CSSProperties, FC, ReactNode } from "react"
 type Url={
-    items:[UrlType],
-    navBarClass?:ClassDecorator,
+    items:UrlType[],
+    navBarClass?:string,
     navBarStyle?:CSSProperties,
-    children?:ReactNode
+    children?:ReactNode,
+    activeUrl:string
 }
 export const Navigation:FC<Url>=(url)=>{
     return(
         <main>
         <nav
-            className={"navbar navbar-expand-md navbar-dark "+url.navBarClass}
+            className={"navbar navbar-expand-md navbar-info "+url.navBarClass}
             style={url?.navBarStyle}>
             <Link  className="navbar-brand"to={'/'}>
                 <img src="/Visitor/unhcr.jpeg" alt="" className="rounded-circle"/>
             </Link>
-           <div className={''}>00
+           <div className={''}>
            <span className="display-5 d-block fw-bolder">
                 UNHCR
             </span>
@@ -29,10 +30,10 @@ export const Navigation:FC<Url>=(url)=>{
             <div className="collapse navbar-collapse" id="collapsibleNavId">
                 <ul className="navbar-nav me-auto mt-2 mt-lg-0">
                 </ul>
-                <div className={"d-flex my-2 my-lg-0 "}>
+                <div className={"d-flex my-2 my-lg-0 mx-md-5"}>
                     {url.items.map((data,index)=>{
                         return(
-                                <Link key={index} to={data.link}>
+                                <Link className={url.activeUrl==data.title?"fw-bolder nav-link":"fw-bolder nav-link border-4 border-bottom border-white"} key={index} to={data.link}>
                                     {data.title}
                                 </Link>
                         )
