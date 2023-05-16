@@ -33,7 +33,7 @@ export const Navigation:FC<Url>=(url)=>{
                 <div className={"d-flex my-2 my-lg-0 mx-md-5"}>
                     {url.items.map((data,index)=>{
                         return(
-                                <Link className={url.activeUrl==data.title?"fw-bolder nav-link":"fw-bolder nav-link border-4 border-bottom border-white"} key={index} to={data.link}>
+                                <Link className={url.activeUrl==data.link?"fw-bolder nav-link border-4 border-bottom border-white mx-2":"fw-bolder mx-2 nav-link"} key={index} to={data.link}>
                                     {data.title}
                                 </Link>
                         )
