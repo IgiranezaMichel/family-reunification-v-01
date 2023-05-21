@@ -1,6 +1,7 @@
 import { Navigation } from "../../components/Navigation"
 import { VisitorUrl } from "../../url/VisitorsUrl"
 import { VisitorBody } from "./components/VisitorBody"
+import { VisitorOverBody } from "./components/VisitorOverBody"
 
 export const Index = () => {
     return (
@@ -17,6 +18,9 @@ export const Index = () => {
                         Ipsum.
                     </div>
                 </VisitorBody>
+                <VisitorOverBody>
+                    <div></div>
+                </VisitorOverBody>
             </Navigation>
         </>
     )
