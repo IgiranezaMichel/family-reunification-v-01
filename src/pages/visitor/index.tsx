@@ -19,7 +19,21 @@ export const Index = () => {
                     </div>
                 </VisitorBody>
                 <VisitorOverBody>
-                    <div></div>
+                    <div className="col-sm-9 d-sm-flex float-sm-end">
+                        <div className="bg-danger p-2 col-sm-8 rounded-4">
+                            <input type="search" className="col-sm-11 p-1 rounded-2 border-0" placeholder="Search ..." name="" id="" />
+                            <span>Image</span>
+                        </div>
+                        <div>
+                            A
+                        </div>
+                        <div>
+                            B
+                        </div>
+                        <div>
+                            C
+                        </div>
+                    </div>
                 </VisitorOverBody>
             </Navigation>
         </>
