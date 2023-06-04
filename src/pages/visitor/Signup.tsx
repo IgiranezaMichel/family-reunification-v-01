@@ -29,7 +29,12 @@ export const Signup = () => {
             reader.readAsDataURL(file);
         }
     }
-    const { saveHandler } = useSaveUser(user);
+    const { saveHandler,response } = useSaveUser(user);
+    const saveUserHandler = () => {
+        saveHandler().then(
+        ()=>{if(response.responseReady)alert(response.responseContent)}
+        );
+    }
     return (
         <>
             <div className="card p-0 rounded-0 border-0 text-white  overflow-auto w-100" style={{
@@ -103,7 +108,7 @@ export const Signup = () => {
                             </div>
                             <TextField type="password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} className="w-100 border-bottom border-0 border-white border-3 bg-transparent" variant='standard' label='Password' />
                             <div className="modal-footer mb-3 mt-2">
-                                <Button variant='contained' onClick={()=>saveHandler()}>Submit</Button>
+                                <Button variant='contained' onClick={() => saveUserHandler()}>Submit</Button>
                             </div>
                         </div>
                     </div>
