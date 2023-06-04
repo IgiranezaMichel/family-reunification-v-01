@@ -7,20 +7,6 @@ import { PaginationInput } from "../../../typedefs/default/paginationInput"
 export const Users = () => {
     const [page,setPage]=useState<PaginationInput>({pageNumber:0,pageSize:10,sort:"firstName"})
     const {response}=useUserPage(page);
-    const readFile=async()=>{
-        if(response.responseContent){
-            const res=response.responseContent.content[0];
-            const { data: imageData } = res.profilePicture;
-            const imageUrl = `data:image/jpeg;base64,${btoa(
-                new Uint8Array(imageData).reduce(
-                  (data, byte) => data + String.fromCharCode(byte),
-                  ''
-                )
-              )}`;
-             console.log(imageUrl)
-        }
-    }
-    readFile()
     return (
         <main className="container-lg">
             <section className="p-2 bg-primary rounded">
