@@ -10,6 +10,8 @@ query($userPage:PaginationInput){
       firstName
       lastName
       profilePicture
+      email
+      phoneNumber
       gender
       dob
       address
