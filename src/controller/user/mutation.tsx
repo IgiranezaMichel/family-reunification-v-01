@@ -9,8 +9,8 @@ const [saveUser]=useMutation(REGISTER_USER);
 const [response,setResponse]=useState<Response>({
     code:0,responseContent:'',responseReady:false
 })
-const saveHandler=()=>{
-    saveUser({variables:{userInput:userInput}}).then(data=>{
+const saveHandler=async()=>{
+    await saveUser({variables:{userInput:userInput}}).then(data=>{
         const result=data.data.saveUser.split[''];
         setResponse({code:Number(result[0]),responseContent:result[1],responseReady:true});
     }).catch(err=>console.log(err))
