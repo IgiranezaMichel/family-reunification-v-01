@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Sort } from "@material-ui/icons"
-import { CircularProgress, Pagination, Skeleton } from "@mui/material"
+import { Pagination, Skeleton } from "@mui/material"
 import { useState } from "react"
 import { PaginationInput } from "../../../typedefs/default/paginationInput"
 import { PartnerCrud } from "../components/navigationCrud/partner"
