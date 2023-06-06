@@ -1,10 +1,10 @@
 import { Avatar, Button, FormControl, InputLabel, NativeSelect, TextField, Typography } from "@mui/material"
 import { BootstrapModal } from "../../../../../components/bootstrapModal"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserInput } from "../../../../../typedefs/visitorInput/user";
 import { Gender } from "../../../../../enum/gender";
 
-export const AddUser=()=>{
+export const AddUser=(props:{arrIndex:number,action:string})=>{
     const [user, setUser] = useState<UserInput>({
         firstName: '',
         lastName: '',
@@ -19,6 +19,11 @@ export const AddUser=()=>{
         password: '',
         address: ''
     });
+    useEffect(
+        ()=>{
+            
+        }
+    )
     return (
         <BootstrapModal id="add-newUser" bg="" size="modal-lg">
         <Typography className="row container m-auto">
