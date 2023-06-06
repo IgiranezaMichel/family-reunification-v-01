@@ -27,6 +27,21 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
                 if(props.action=='Update User Information'&&data!=undefined){
                     const result=data[props.arrIndex];
                     setUser(result);
+                }else{
+                    setUser({
+                        firstName: '',
+                        lastName: '',
+                        gender: Gender.MALE,
+                        base64ProfilePicture: '',
+                        dob: '',
+                        email: '',
+                        phoneNumber: '',
+                        country: '',
+                        nativeCountry: '',
+                        username: '',
+                        password: '',
+                        address: ''
+                    });
                 }
             }
             fetch();
