@@ -3,6 +3,7 @@ import { BootstrapModal } from "../../../../../components/bootstrapModal"
 import { useEffect, useState } from "react";
 import { UserInput } from "../../../../../typedefs/visitorInput/user";
 import { Gender } from "../../../../../enum/gender";
+import { useUserContext } from "../../../../../context.tsx/UserContext";
 
 export const AddUser=(props:{arrIndex:number,action:string})=>{
     const [user, setUser] = useState<UserInput>({
@@ -19,17 +20,24 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
         password: '',
         address: ''
     });
+    const {data}=useUserContext();
     useEffect(
         ()=>{
-            
-        }
+            const fetch=()=>{
+                if(props.action=='Update User Information'&&data!=undefined){
+                    const result=data[props.arrIndex];
+                    setUser(result);
+                }
+            }
+            fetch();
+        },[data, props.action, props.arrIndex]
     )
     return (
         <BootstrapModal id="add-newUser" bg="" size="modal-lg">
         <Typography className="row container m-auto">
             <div className="mt-1 mb-5">
                 <Avatar className="m-auto" />
-                <h5 className="text-center">Add new user</h5>
+                <h5 className="text-center">{props.action}</h5>
             </div>
 
             <section className="col-sm-6">
