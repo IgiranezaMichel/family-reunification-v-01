@@ -19,8 +19,11 @@ export const Users = () => {
         {response.responseContent&&<UserContext.Provider value={{data:response.responseContent.content,updateData}}>
             <main className="container-lg">
                 <section className="p-2 bg-primary rounded">
-                    <div className="fs-3 fw-bold text-white mb-4">
-                        Manage User
+                    <div >
+                        <div className="fs-3 fw-bold">Manage User</div>
+                        <div className="mb-4 text-white fw-bold">Total user <span
+                            className="badge bg-info">{response.responseContent.size}</span>
+                        </div>
                     </div>
                     <div>
                         <TextField variant="standard" type="search" placeholder="search ..." className="float-end border-0 border-bottom border-2 text-white border-white col-sm-4" />
