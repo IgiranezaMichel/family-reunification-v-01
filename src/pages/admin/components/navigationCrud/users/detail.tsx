@@ -59,6 +59,9 @@ return(
                     padding: 0,
                 },
             }}>
+                <div className="h4 fw-bold mt-4">
+                    Recent Posts
+                </div>
                 <TimelineItem>
                     <TimelineSeparator>
                         <TimelineDot />
