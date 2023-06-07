@@ -47,6 +47,7 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
             fetch();
         },[data, props.action, props.arrIndex]
     )
+    console.log(props.arrIndex)
     return (
         <BootstrapModal id="add-newUser" bg="" size="modal-lg">
         <Typography className="row container m-auto">
