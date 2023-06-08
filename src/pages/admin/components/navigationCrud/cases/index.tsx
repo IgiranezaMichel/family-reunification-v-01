@@ -1,6 +1,6 @@
-import { Button, Table, TableCell, TableRow, Typography } from "@mui/material"
+import { Button, Typography } from "@mui/material"
 import { PaginationInput } from "../../../../../typedefs/default/paginationInput"
-import { Add, Delete, Details, List, Update } from "@material-ui/icons"
+import { Add, Delete, List, Update } from "@material-ui/icons"
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator, timelineItemClasses } from "@mui/lab"
 
 export const CasesCrud = (props: { search: string, page: PaginationInput }) => {
