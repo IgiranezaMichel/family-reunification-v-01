@@ -25,7 +25,7 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
         ()=>{
             const fetch=()=>{
                 if(props.action=='Update User Information'&&data!=undefined){
-                    const result=data[props.arrIndex];
+                    const result=data.content[props.arrIndex];
                     setUser(result);
                 }else{
                     setUser({
