@@ -4,20 +4,7 @@ import { Add, Delete, Details, List, Update } from "@material-ui/icons"
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator, timelineItemClasses } from "@mui/lab"
 
 export const CasesCrud = (props: { search: string, page: PaginationInput }) => {
-    const updateHandler = () => {
 
-    }
-    const deleteHandler = () => {
-
-    }
-    const displayView = <>
-
-    </>
-
-    const updateView = <>
-    </>
-    const deleteView = <>
-    </>
     return (
         <>
 
