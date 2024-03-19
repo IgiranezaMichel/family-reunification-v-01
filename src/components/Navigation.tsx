@@ -1,23 +1,22 @@
 import { Link } from "react-router-dom"
 import { UrlType } from "../typedefs/UrlType"
-import { FC, ReactNode } from "react"
-import { StyleSheetProperties } from "react-native"
+import { CSSProperties, FC, ReactNode } from "react"
 type Url={
     items:[UrlType],
     navBarClass?:ClassDecorator,
-    navBarStyle?:StyleSheetProperties
+    navBarStyle?:CSSProperties,
     children?:ReactNode
 }
 export const Navigation:FC<Url>=(url)=>{
     return(
         <main>
         <nav
-            className={"navbar navbar-expand-md navbar-dark"}
-            style={url.navBarStyle}>
+            className={"navbar navbar-expand-md navbar-dark "+url.navBarClass}
+            style={url?.navBarStyle}>
             <Link  className="navbar-brand"to={'/'}>
                 <img src="/Visitor/unhcr.jpeg" alt="" className="rounded-circle"/>
             </Link>
-           <div className={''}>
+           <div className={''}>00
            <span className="display-5 d-block fw-bolder">
                 UNHCR
             </span>
