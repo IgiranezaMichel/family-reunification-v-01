@@ -1,12 +1,14 @@
+import { LocationOn, Phone, Search } from "@material-ui/icons"
 import { Navigation } from "../../components/Navigation"
 import { VisitorUrl } from "../../url/VisitorsUrl"
 import { VisitorBody } from "./components/VisitorBody"
 import { VisitorOverBody } from "./components/VisitorOverBody"
-
+import { LostPeople } from "./components/LostPeople"
+import { Footer } from "../../components/Footer"
 export const Index = () => {
     return (
         <>
-            <Navigation activeUrl="/" items={VisitorUrl} navBarClass={'bg-info text-white'} >
+            <Navigation activeUrl="/" items={VisitorUrl} navBarClass={'bg-info text-white sticky-top'} >
                 <VisitorBody>
                     <div className="fw-bold display-5">Family Reunification and Tracking  </div>
                     <div className="mt-3">
@@ -19,22 +21,24 @@ export const Index = () => {
                     </div>
                 </VisitorBody>
                 <VisitorOverBody>
-                    <div className="col-sm-9 d-sm-flex float-sm-end">
-                        <div className="bg-danger p-2 col-sm-8 rounded-4">
-                            <input type="search" className="col-sm-11 p-1 rounded-2 border-0" placeholder="Search ..." name="" id="" />
-                            <span>Image</span>
+                    <div className="col-sm-12 d-sm-flex float-sm-end" style={{clear:'both'}}>
+                        <div className="bg-primary mx-1 rounded-circle p-2">
+                            <Phone className="fs-1"/>
                         </div>
-                        <div>
-                            A
+                        <div className="bg-primary mx-1 rounded-circle p-2">
+                            <LocationOn className="fs-1"/>
                         </div>
-                        <div>
-                            B
+                        <div className="bg-primary mx-1 rounded-circle p-2">
+                            <LocationOn className="fs-1"/>
                         </div>
-                        <div>
-                            C
+                        <div className="bg-danger p-2 col-sm-8 rounded-4 m-auto">
+                            <input type="search" className="col-sm-11 p-2 rounded-2 border-0" placeholder="Search ..." name="" id="" />
+                            <span><Search className="fs-1"/></span>
                         </div>
                     </div>
                 </VisitorOverBody>
+                <LostPeople/>
+                <Footer/>
             </Navigation>
         </>
     )
