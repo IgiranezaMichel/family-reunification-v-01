@@ -9,7 +9,7 @@ export const VisitorBody=(props:{children:ReactNode})=>{
                 </div>
             </div>
             <div className="col-sm-4 card p-0 bg-transparent border-0">
-                <img src="/public/Visitor/baby-sitting.png" alt="" />
+                <img src="/Visitor/baby-sitting.png" alt="" />
             </div>
         </main>
     )
