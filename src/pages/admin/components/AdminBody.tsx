@@ -23,7 +23,7 @@ export const AdminBody=()=>{
             <div className="col-sm-1">
             <Card className="bg-info d-flex justify-content-center align-items-center" style={{rotate:'45deg',width:'50px',height:'50px'}} >
                 <div style={{rotate:'-45deg'}} className="p-1">
-                <img src="/public/Visitor/baby-sitting.png" className="card-img"/>
+                <img src="Visitor/baby-sitting.png" className="card-img"/>
                 </div>
             </Card>
             </div>
