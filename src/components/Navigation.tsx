@@ -34,7 +34,7 @@ export const Navigation:FC<Url>=(url)=>{
                     {url.items.map((data,index)=>{
                         return(
                                 <Link className={url.activeUrl==data.link?"fw-bolder nav-link border-4 border-bottom border-white mx-2":"fw-bolder mx-2 nav-link"} key={index} to={data.link}>
-                                    {data.title}
+                                   {data.icon} {data.title}
                                 </Link>
                         )
                     })}
