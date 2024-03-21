@@ -11,7 +11,7 @@ export const AdminNavigation = () => {
     const [activeNav, setActiveNav] = useState('home');
     const activeIconClass = 'fs-1 text-white m-1 bg-primary rounded-circle p-1 border border-2 border-white';
     const inactiveIconClass = 'fs-1 text-white m-1 bg-danger rounded-circle p-1 border border-2 border-white';
-    const activeClass = 'border-bottom border-2 fw-bolder p-1 d-block';
+    const activeClass = 'border-bottom border-4 border-primary fw-bolder p-1 d-block';
     return (
         <main className="sticky-top">
             <nav className="bg-primary text-white p-2">
