@@ -1,7 +1,7 @@
 export const Report=()=>{
     return(
         <>
-        <div className="display-6">
+        <div className="fs-4 fw-bold">
             Manage Report
         </div>
         </>
