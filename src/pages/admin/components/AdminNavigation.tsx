@@ -21,8 +21,9 @@ export const AdminNavigation = () => {
                 <Message className={activeNav == 'chart' ? activeIconClass : inactiveIconClass} />
                 <Settings className={activeNav == 'settings' ? activeIconClass : inactiveIconClass} />
             </div>
+            {/*  sidebar navigation*/}
             <section className="row col-12 m-auto" style={{cursor:'pointer'}}>
-                <section className={navIsOpen?"col-2 card rounded-0":""} style={{transform:navIsOpen?'translate(0px,0px)':'translate(-150px,0px)',width:navIsOpen?'':'200px'}}>
+                <section className={navIsOpen?"col-2 card rounded-0":"col-1"} style={{transform:navIsOpen?'translate(0px,0px)':'translate(-150px,0px)',width:navIsOpen?'':'200px'}}>
                     <div className="m-2" onClick={()=>setActiveNav('home')}>
                         <span className={activeNav == 'home' ? activeClass : ''}><Home />Home</span>
                         <span className="float-end" onClick={()=>setNavIsOpen(!navIsOpen)}>
@@ -47,7 +48,8 @@ export const AdminNavigation = () => {
                         <span className={activeNav == 'settings' ? activeClass : ''}><Settings /> Settings</span>
                     </div>
                 </section>
-                <section className="col-9 overflow-auto card">
+                <section className={navIsOpen?"col-10 overflow-auto card":"col-11 overflow-auto card"}>
+                    a
                 </section>
             </section>
         </main>
