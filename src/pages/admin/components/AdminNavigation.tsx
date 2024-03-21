@@ -3,7 +3,6 @@ import { useState } from "react"
 
 export const AdminNavigation = () => {
     const [activeNav, setActiveNav] = useState('home');
-    const [navIsOpen, setNavIsOpen] = useState(true);
     const activeIconClass = 'fs-1 text-white m-1 bg-primary rounded-circle p-1 border border-2 border-white';
     const inactiveIconClass = 'fs-1 text-white m-1 bg-danger rounded-circle p-1 border border-2 border-white';
     const activeClass = 'border-bottom border-2 fw-bolder p-1 d-block';
@@ -23,10 +22,10 @@ export const AdminNavigation = () => {
             </div>
             {/*  sidebar navigation*/}
             <section className="row col-12 m-auto" style={{ cursor: 'pointer' }}>
-                <section className={"col-1 card p-0 rounded-0"} style={{ transform: navIsOpen ? 'translate(0px,0px)' : 'translate(-150px,0px)', width: navIsOpen ? '' : '200px' }}>
+                <section className={"col-1 card p-0 rounded-0"}>
                     <div className="m-2 text-center" onClick={() => setActiveNav('home')}>
-                        <span className={activeNav == 'home' ? activeClass : ''}><Home />
-                            <small className={activeNav == 'partner' ? activeClass : 'd-block'}>Home</small>
+                        <span><Home />
+                            <small className={activeNav == 'home' ? activeClass : 'd-block'}>Home</small>
                         </span>
                     </div>
                     <div className="m-2 text-center" onClick={() => setActiveNav('partner')}>
@@ -57,7 +56,7 @@ export const AdminNavigation = () => {
                     <div className="m-2 text-center" onClick={() => setActiveNav('settings')}>
                         <span>
                             <Settings />
-                            <small className={activeNav == 'settings' ? activeClass : ''}>Settings</small>
+                            <small className={activeNav == 'settings' ? activeClass : 'd-block'}>Settings</small>
                         </span>
                     </div>
                 </section>
