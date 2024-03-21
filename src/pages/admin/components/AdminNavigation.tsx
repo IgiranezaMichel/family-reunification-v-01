@@ -1,8 +1,9 @@
-import { FileCopyRounded, Group, Home, Message, People, Person, ReportRounded, Settings } from "@material-ui/icons"
+import { DoubleArrow, FileCopyRounded, Group, Home, Message, NavigateBefore, People, Person, ReportRounded, Settings } from "@material-ui/icons"
 import { useState } from "react"
 
 export const AdminNavigation = () => {
     const [activeNav, setActiveNav] = useState('home');
+    const [navIsOpen,setNavIsOpen]=useState(true);
     const activeIconClass = 'fs-1 text-white m-1 bg-primary rounded-circle p-1 border border-2 border-white';
     const inactiveIconClass = 'fs-1 text-white m-1 bg-danger rounded-circle p-1 border border-2 border-white';
     const activeClass = 'border-bottom border-2 fw-bolder p-1';
@@ -20,10 +21,13 @@ export const AdminNavigation = () => {
                 <Message className={activeNav == 'chart' ? activeIconClass : inactiveIconClass} />
                 <Settings className={activeNav == 'settings' ? activeIconClass : inactiveIconClass} />
             </div>
-            <section className="row col-12 m-auto">
-                <section className="col-2 card rounded-0">
+            <section className="row col-12 m-auto" style={{cursor:'pointer'}}>
+                <section className={navIsOpen?"col-2 card rounded-0":""} style={{transform:navIsOpen?'translate(0px,0px)':'translate(-150px,0px)',width:navIsOpen?'':'200px'}}>
                     <div className="m-2" onClick={()=>setActiveNav('home')}>
                         <span className={activeNav == 'home' ? activeClass : ''}><Home />Home</span>
+                        <span className="float-end" onClick={()=>setNavIsOpen(!navIsOpen)}>
+                            {navIsOpen?<NavigateBefore/>:<DoubleArrow/>} 
+                        </span>
                     </div>
                     <div className="m-2" onClick={()=>setActiveNav('partner')}>
                         <span className={activeNav == 'partner' ? activeClass : ''}><Group /> Partner</span>
