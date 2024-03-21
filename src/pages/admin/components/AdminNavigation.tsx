@@ -28,7 +28,7 @@ export const AdminNavigation = () => {
             </div>
             {/*  sidebar navigation*/}
             <section className="row col-12 m-auto" style={{ cursor: 'pointer' }}>
-                <section className={"col-1 card p-0 rounded-0"}>
+                <section className={"col-1 card border-0 border-end p-0 rounded-0"}>
                     <div className="m-2 text-center" onClick={() => setActiveNav('home')}>
                         <span><Home />
                             <small className={activeNav == 'home' ? activeClass : 'd-block'}>Home</small>
