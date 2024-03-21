@@ -1,5 +1,5 @@
-import { Sort } from "@material-ui/icons"
-import { Pagination } from "@mui/material"
+import { Add, Sort } from "@material-ui/icons"
+import { Button, Pagination } from "@mui/material"
 
 export const Partner=()=>{
     return(
@@ -19,6 +19,11 @@ export const Partner=()=>{
                 <option value="">sort by</option>
             </select>
             </div>
+        </div>
+        <div className="mt-3">
+        <Button variant="contained">
+            <Add/> new
+        </Button>
         </div>
         </>
     )
