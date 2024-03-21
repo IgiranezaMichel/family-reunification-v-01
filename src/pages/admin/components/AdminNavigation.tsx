@@ -1,5 +1,6 @@
 import {FileCopyRounded, Group, Home, Message, People, Person, ReportRounded, Settings } from "@material-ui/icons"
-import { useState } from "react"
+import {useState } from "react"
+import { AdminHome } from "../navigations/home";
 
 export const AdminNavigation = () => {
     const [activeNav, setActiveNav] = useState('home');
@@ -61,7 +62,10 @@ export const AdminNavigation = () => {
                     </div>
                 </section>
                 <section className={"col-11 border-0 overflow-auto card"}>
-                    Home
+                {
+                activeNav=='home'?
+                <AdminHome/>:''
+                }
                 </section>
             </section>
         </main>
