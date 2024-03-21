@@ -1,12 +1,12 @@
-import { DoubleArrow, FileCopyRounded, Group, Home, Message, NavigateBefore, People, Person, ReportRounded, Settings } from "@material-ui/icons"
+import {FileCopyRounded, Group, Home, Message, People, Person, ReportRounded, Settings } from "@material-ui/icons"
 import { useState } from "react"
 
 export const AdminNavigation = () => {
     const [activeNav, setActiveNav] = useState('home');
-    const [navIsOpen,setNavIsOpen]=useState(true);
+    const [navIsOpen, setNavIsOpen] = useState(true);
     const activeIconClass = 'fs-1 text-white m-1 bg-primary rounded-circle p-1 border border-2 border-white';
     const inactiveIconClass = 'fs-1 text-white m-1 bg-danger rounded-circle p-1 border border-2 border-white';
-    const activeClass = 'border-bottom border-2 fw-bolder p-1';
+    const activeClass = 'border-bottom border-2 fw-bolder p-1 d-block';
     return (
         <main className="sticky-top">
             <nav className="bg-primary text-white p-2">
@@ -22,34 +22,47 @@ export const AdminNavigation = () => {
                 <Settings className={activeNav == 'settings' ? activeIconClass : inactiveIconClass} />
             </div>
             {/*  sidebar navigation*/}
-            <section className="row col-12 m-auto" style={{cursor:'pointer'}}>
-                <section className={navIsOpen?"col-2 card rounded-0":"col-1"} style={{transform:navIsOpen?'translate(0px,0px)':'translate(-150px,0px)',width:navIsOpen?'':'200px'}}>
-                    <div className="m-2" onClick={()=>setActiveNav('home')}>
-                        <span className={activeNav == 'home' ? activeClass : ''}><Home />Home</span>
-                        <span className="float-end" onClick={()=>setNavIsOpen(!navIsOpen)}>
-                            {navIsOpen?<NavigateBefore/>:<DoubleArrow/>} 
+            <section className="row col-12 m-auto" style={{ cursor: 'pointer' }}>
+                <section className={"col-1 card p-0 rounded-0"} style={{ transform: navIsOpen ? 'translate(0px,0px)' : 'translate(-150px,0px)', width: navIsOpen ? '' : '200px' }}>
+                    <div className="m-2 text-center" onClick={() => setActiveNav('home')}>
+                        <span className={activeNav == 'home' ? activeClass : ''}><Home />
+                            <small className={activeNav == 'partner' ? activeClass : 'd-block'}>Home</small>
                         </span>
                     </div>
-                    <div className="m-2" onClick={()=>setActiveNav('partner')}>
-                        <span className={activeNav == 'partner' ? activeClass : ''}><Group /> Partner</span>
+                    <div className="m-2 text-center" onClick={() => setActiveNav('partner')}>
+                        <span>
+                            <Group />
+                            <small className={activeNav == 'partner' ? activeClass : 'd-block'}>Partner</small>
+                        </span>
                     </div>
-                    <div className="m-2" onClick={()=>setActiveNav('users')}>
-                        <span className={activeNav == 'users' ? activeClass : ''}><People /> Users</span>
+                    <div className="m-2 text-center" onClick={() => setActiveNav('users')}>
+                        <span><People />
+                            <small className={activeNav == 'users' ? activeClass : 'd-block'}>Users</small>
+                        </span>
                     </div>
-                    <div className="m-2" onClick={()=>setActiveNav('cases')}>
-                        <span className={activeNav == 'cases' ? activeClass : ''}><FileCopyRounded /> Manage cases</span>
+                    <div className="m-2 text-center" onClick={() => setActiveNav('cases')}>
+                        <span><FileCopyRounded />
+                            <small className={activeNav == 'cases' ? activeClass : 'd-block'}>Manage cases</small>
+                        </span>
                     </div>
-                    <div className="m-2" onClick={()=>setActiveNav('report')}>
-                        <span className={activeNav == 'report' ? activeClass : ''}><ReportRounded /> Report</span>
+                    <div className="m-2 text-center" onClick={() => setActiveNav('report')}>
+                        <span><ReportRounded /> 
+                        <small className={activeNav == 'report' ? activeClass : 'd-block'}>Report</small>
+                        </span>
                     </div>
-                    <div className="m-2" onClick={()=>setActiveNav('chart')}>
-                        <span className={activeNav == 'chart' ? activeClass : ''}><Message /> Chart</span></div>
-                    <div className="m-2" onClick={()=>setActiveNav('settings')}>
-                        <span className={activeNav == 'settings' ? activeClass : ''}><Settings /> Settings</span>
+                    <div className="m-2 text-center" onClick={() => setActiveNav('chart')}>
+                        <Message />
+                        <small className={activeNav == 'chart' ? activeClass : 'd-block'}>Chart</small>
+                    </div>
+                    <div className="m-2 text-center" onClick={() => setActiveNav('settings')}>
+                        <span>
+                            <Settings />
+                            <small className={activeNav == 'settings' ? activeClass : ''}>Settings</small>
+                        </span>
                     </div>
                 </section>
-                <section className={navIsOpen?"col-10 overflow-auto card":"col-11 overflow-auto card"}>
-                    a
+                <section className={"col-11 border-0 overflow-auto card"}>
+                    Home
                 </section>
             </section>
         </main>
