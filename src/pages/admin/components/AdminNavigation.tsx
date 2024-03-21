@@ -47,7 +47,7 @@ export const AdminNavigation = () => {
                         <span className={activeNav == 'settings' ? activeClass : ''}><Settings /> Settings</span>
                     </div>
                 </section>
-                <section className="col-9 overflow-auto card border-0">
+                <section className="col-9 overflow-auto card">
                 </section>
             </section>
         </main>
