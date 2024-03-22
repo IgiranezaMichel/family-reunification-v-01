@@ -65,12 +65,12 @@ export const PartnerCrud = (props: { search: string, page: PaginationInput }) =>
                 </div>
                 <div className="modal-footer text-dark border-top py-1">
                     <Button onClick={()=>{setOpenDel(true)}}>
-                    <List className="bg-info p-1 rounded-circle"/>
+                    <List className="bg-info p-1 text-dark rounded-circle"/>
                     </Button>
                     <Button onClick={()=>{setOpenDel(true)}} variant="text">
                     <Delete  className="bg-info p-1 text-dark rounded-circle"/> 
                     </Button>
-                    <Button><Update className="bg-info p-1 rounded-circle m-1"/></Button>
+                    <Button><Update className="bg-info p-1 text-dark rounded-circle m-1"/></Button>
                 </div>
             </div>
         </section>
