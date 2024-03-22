@@ -6,6 +6,7 @@ import { Users } from "../navigations/users";
 import { Cases } from "../navigations/cases";
 import { Report } from "../navigations/report";
 import { Chat } from "../navigations/chat";
+import { AdminBody } from "./AdminBody";
 
 export const AdminNavigation = () => {
     const [activeNav, setActiveNav] = useState('home');
@@ -14,6 +15,7 @@ export const AdminNavigation = () => {
     const activeClass = 'border-bottom border-4 border-primary fw-bolder p-1 d-block';
     return (
         <main className="sticky-top">
+            <AdminBody active={activeNav}/>
             <nav className="bg-primary text-white p-2">
                 <div className="fw-bold"><Person className="fs-1 rounded-circle text-dark p-1 bg-white" /> user name</div>
             </nav>
@@ -23,7 +25,7 @@ export const AdminNavigation = () => {
                 <People className={activeNav == 'users' ? activeIconClass : inactiveIconClass} />
                 <FileCopyRounded className={activeNav == 'cases' ? activeIconClass : inactiveIconClass} />
                 <ReportRounded className={activeNav == 'report' ? activeIconClass : inactiveIconClass} />
-                <Message className={activeNav == 'chart' ? activeIconClass : inactiveIconClass} />
+                <Message className={activeNav == 'chat' ? activeIconClass : inactiveIconClass} />
                 <Settings className={activeNav == 'settings' ? activeIconClass : inactiveIconClass} />
             </div>
             {/*  sidebar navigation*/}
@@ -55,9 +57,9 @@ export const AdminNavigation = () => {
                         <small className={activeNav == 'report' ? activeClass : 'd-block'}>Report</small>
                         </span>
                     </div>
-                    <div className="m-2 text-center" onClick={() => setActiveNav('chart')}>
+                    <div className="m-2 text-center" onClick={() => setActiveNav('chat')}>
                         <Message />
-                        <small className={activeNav == 'chart' ? activeClass : 'd-block'}>Chart</small>
+                        <small className={activeNav == 'chat' ? activeClass : 'd-block'}>chat</small>
                     </div>
                     <div className="m-2 text-center" onClick={() => setActiveNav('settings')}>
                         <span>
