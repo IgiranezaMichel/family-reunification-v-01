@@ -1,5 +1,6 @@
 import { Add, Sort } from "@material-ui/icons"
 import { Button, Pagination } from "@mui/material"
+import { PartnerCrud } from "./navigationCrudComponents/partner"
 
 export const Partner=()=>{
     return(
@@ -20,11 +21,7 @@ export const Partner=()=>{
             </select>
             </div>
         </div>
-        <div className="mt-3">
-        <Button variant="contained">
-            <Add/> new
-        </Button>
-        </div>
+       <PartnerCrud/>
         </>
     )
 }
