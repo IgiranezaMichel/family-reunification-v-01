@@ -1,5 +1,5 @@
 import {FileCopyRounded, Group, Home, Message, People, Person, ReportRounded, Settings } from "@material-ui/icons"
-import {useState } from "react"
+import {useEffect, useState } from "react"
 import { AdminHome } from "../navigations/home";
 import { Partner } from "../navigations/partner";
 import { Users } from "../navigations/users";
@@ -7,14 +7,21 @@ import { Cases } from "../navigations/cases";
 import { Report } from "../navigations/report";
 import { Chat } from "../navigations/chat";
 import { AdminBody } from "./AdminBody";
+import { ModalContext} from "../../../context.tsx/ModalContext";
+import { ModalSwitch } from "../../../typedefs/default/ModalSwitch";
 
 export const AdminNavigation = () => {
     const [activeNav, setActiveNav] = useState('home');
     const activeIconClass = 'fs-1 text-white m-1 bg-primary rounded-circle p-1 border border-2 border-white';
     const inactiveIconClass = 'fs-1 text-white m-1 bg-danger rounded-circle p-1 border border-2 border-white';
     const activeClass = 'border-bottom border-4 border-primary fw-bolder p-1 d-block';
+    const [myContext]=useState<ModalSwitch>({openAdd:false,openDelete:false,openUpdate:false});
+    useEffect(()=>{
+    
+    },[myContext])
+    console.log(myContext)
     return (
-        <main>
+        <ModalContext.Provider value={myContext}>
             <AdminBody active={activeNav}/>
             <nav className="bg-primary text-white p-2">
                 <div className="fw-bold"><Person className="fs-1 rounded-circle text-dark p-1 bg-white" /> user name</div>
@@ -84,6 +91,6 @@ export const AdminNavigation = () => {
                 </section>
             </section>
             </section>
-        </main>
+        </ModalContext.Provider>
     )
 }
