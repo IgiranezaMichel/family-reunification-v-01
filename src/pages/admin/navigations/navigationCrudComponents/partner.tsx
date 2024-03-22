@@ -1,6 +1,6 @@
 import { Add, Close, Delete, List, PersonAdd, Update } from "@material-ui/icons"
 import { Avatar, Button,Card,TextField, TextareaAutosize, Typography } from "@mui/material"
-import { CardModal } from "../../components/Modal";
+import { CardModal } from "../../../../components/Modal";
 import { useState } from "react";
 import { deepOrange } from "@mui/material/colors";
 
