@@ -14,11 +14,13 @@ export const AdminNavigation = () => {
     const inactiveIconClass = 'fs-1 text-white m-1 bg-danger rounded-circle p-1 border border-2 border-white';
     const activeClass = 'border-bottom border-4 border-primary fw-bolder p-1 d-block';
     return (
-        <main className="sticky-top">
+        <main>
             <AdminBody active={activeNav}/>
             <nav className="bg-primary text-white p-2">
                 <div className="fw-bold"><Person className="fs-1 rounded-circle text-dark p-1 bg-white" /> user name</div>
             </nav>
+           
+            <section  className="sticky-top top-0">
             <div className="modal-footer" style={{ transform: 'translate(0px,-25px)' }}>
                 <Home className={activeNav == 'home' ? activeIconClass : inactiveIconClass} />
                 <Group className={activeNav == 'partner' ? activeIconClass : inactiveIconClass} />
@@ -80,6 +82,7 @@ export const AdminNavigation = () => {
                 :''
                 }
                 </section>
+            </section>
             </section>
         </main>
     )
