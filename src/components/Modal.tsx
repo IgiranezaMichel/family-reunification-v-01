@@ -1,7 +1,7 @@
 import { Box,Modal } from "@mui/material";
 import { FC, ReactNode } from "react";
 type ModalItem={
-    width:'30%'|'540px'|'720px'|'960px'|'1140px',
+    width:'540px'|'720px'|'960px'|'1140px'|'25%'|'30%'|'50%'|'75%'|'100%',
     bg:string,
     openModal:boolean,
     children:ReactNode
@@ -23,7 +23,7 @@ export const CardModal:FC<ModalItem>=(props)=>{
       <Modal
         keepMounted
         open={props.openModal}
-        style={{backgroundColor:'transparent',overflow:'auto'}}
+        style={{backgroundColor:'transparent'}}
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
       >
