@@ -1,11 +1,130 @@
-import { Delete, Email, LocationOn, Person, PersonAdd, Phone, PostAddOutlined, Update, Wc } from "@material-ui/icons"
-import { Button, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
+import { Close, Delete, Email, LocationOn, Person, PersonAdd, Phone, PostAddOutlined, Update, Wc } from "@material-ui/icons"
+import { Avatar, Button, FormControl, InputLabel, MenuItem, NativeSelect, Select, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from "@mui/material"
+import { CardModal } from "../../../../../components/Modal"
+import { useState } from "react"
+import { ModalSwitch } from "../../../../../typedefs/default/ModalSwitch"
+import { UserInput } from "../../../../../typedefs/visitor/user"
+import { Gender } from "../../../../../enum/gender"
+import { UserDetail } from "./detail"
 
 export const UsersCrud = () => {
+    const [user, setUser] = useState<UserInput>({
+        name: '',
+        gender: Gender.MALE,
+        profilePicture: '',
+        dob: '',
+        email: '',
+        phoneNumber: '',
+        country: '',
+        nativeCountry: '',
+        userName: '',
+        password: '',
+    })
+    const [modal, setModal] = useState<ModalSwitch>({ openAdd: false, openDelete: false, openUpdate: false });
+    const addNewUser = <CardModal width="75%" bg="white" openModal={modal.openAdd} >
+        <Typography className="row">
+            <div className="clo-12"> <span className="fw-bold"><PersonAdd /> Add new user</span>
+                <span className="float-end"><Close onClick={()=>setModal({...modal,openAdd:false})}/></span>
+            </div>
+            <div className="m-5">
+                <Avatar className="m-auto" />
+            </div>
+
+            <section className="col-sm-6">
+                <TextField value={user.name} onChange={(e)=>setUser({...user,name:e.target.value})} variant="standard" className="form-control mb-3" label='Name' />
+                <FormControl fullWidth>
+                    <InputLabel variant="standard" htmlFor='uncontrolled' className="text-dark">Select Gender</InputLabel>
+                    <NativeSelect defaultValue={Gender.MALE} inputProps={{ name: 'select Gender', id: 'uncontrolled' }}
+                        onChange={(e) => setUser({ ...user, gender: e.target.value as Gender })} variant="standard" className="f text-black mb-3">
+                        <option value={Gender.MALE}>Male</option>
+                        <option value={Gender.FEMALE}>Female</option>
+                    </NativeSelect>
+                </FormControl>
+                <label htmlFor="">Date of birth</label>
+                <TextField variant="standard" type="date"
+                value={user.dob} onChange={(e)=>setUser({...user,dob:e.target.value})}
+                 className="form-control mb-3" />
+                <label htmlFor="">Profile picture</label>
+                <TextField variant="standard" type="file" className="form-control mb-3" />
+                <TextField variant="standard"
+                value={user.phoneNumber} onChange={(e)=>setUser({...user,phoneNumber:e.target.value})}
+                 className="form-control mb-3"
+                  label='Phone Number' />
+            </section>
+
+            <section className="col-sm-6">
+                <FormControl fullWidth>
+                    <InputLabel variant="standard" htmlFor='uncontrolled' className="text-dark">Select use current Country</InputLabel>
+                    <NativeSelect defaultValue={Gender.MALE} inputProps={{ name: 'select country', id: 'uncontrolled' }}
+                        onChange={(e) => setUser({ ...user, country: e.target.value as Gender })} variant="standard" className="f text-black mb-3">
+                        <option value={Gender.MALE}>Rwanda</option>
+                        <option value={Gender.FEMALE}>Burundi</option>
+                    </NativeSelect>
+                </FormControl>
+                <FormControl fullWidth className="mb-2">
+                    <InputLabel variant="standard" htmlFor='uncontrolled' className="text-dark">Select use Native Country</InputLabel>
+                    <NativeSelect defaultValue={Gender.MALE} inputProps={{ name: 'select country', id: 'uncontrolled' }}
+                        onChange={(e) => setUser({ ...user, nativeCountry: e.target.value as Gender })} variant="standard" className="f text-black mb-3">
+                        <option value={Gender.MALE}>Rwanda</option>
+                        <option value={Gender.FEMALE}>Burundi</option>
+                    </NativeSelect>
+                </FormControl>
+                <TextField variant="standard"
+                value={user.email} onChange={(e)=>setUser({...user,email:e.target.value})}
+                className="form-control mb-4" label='Email' />
+                <TextField variant="standard"
+                value={user.userName} onChange={(e)=>setUser({...user,userName:e.target.value})}
+                 className="form-control mb-3" label='User name' />
+                <TextField variant="standard" type="password"
+                value={user.password} onChange={(e)=>setUser({...user,password:e.target.value})}
+                className="form-control mb-3" label='Password' />
+            </section>
+            <div className="modal-footer">
+                <Button variant="outlined" className="fw-bold">save</Button>
+            </div>
+        </Typography>
+    </CardModal>
+
+    const display = <TableBody>
+        <TableRow>
+            <TableCell className="col-2 rounded-0 card bg-info">
+                <img src="Visitor/baby-sitting.png" alt="" className="card-img" />
+                <div className="text-center">
+                    <b className="m-auto"><Person />Name</b>
+                </div>
+            </TableCell>
+            <TableCell>
+                <p><Phone />+ 250 888</p>
+                <p><Email />email@gmail.com</p>
+            </TableCell>
+            <TableCell>
+                <p><Wc /> location</p>
+                <p><LocationOn /> location</p>
+                <p><LocationOn /> location</p>
+            </TableCell>
+            <TableCell className="text-center">
+                <Button
+                    className="btn btn-primary position-relative" variant="contained">
+                    <PostAddOutlined />
+                    <span
+                        className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                        99+
+                    </span>
+                </Button>
+                <Button className="mx-4" variant="contained">
+                    <Delete />
+                </Button>
+                <Button className="mx-4" variant="contained">
+                    <Update />
+                </Button>
+            </TableCell>
+        </TableRow>
+    </TableBody>
+
     return (
         <>
-            <Button className="mt-3" variant="contained"><PersonAdd /></Button>
-            <Table className="border mt-3 mb-5">
+            <Button className="mt-3" onClick={() => setModal({ ...modal, openAdd: true })} variant="contained"><PersonAdd /></Button>
+            <Table className="border mt-3 mb-5 table-responsive">
                 <TableHead>
                     <TableRow className="bg-body-secondary ">
                         <TableCell className="fw-bold">Name</TableCell>
@@ -14,42 +133,10 @@ export const UsersCrud = () => {
                         <TableCell className="fw-bold text-center">Action</TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody>
-                    <TableRow>
-                        <TableCell className="col-2 rounded-0 card bg-info">
-                            <img src="Visitor/baby-sitting.png" alt="" className="card-img" />
-                            <div className="text-center">
-                                <b className="m-auto"><Person />Name</b>
-                            </div>
-                        </TableCell>
-                        <TableCell>
-                            <p><Phone />+ 250 888</p>
-                            <p><Email />email@gmail.com</p>
-                        </TableCell>
-                        <TableCell>
-                            <p><Wc /> location</p>
-                            <p><LocationOn /> location</p>
-                            <p><LocationOn /> location</p>
-                        </TableCell>
-                        <TableCell className="text-center">
-                            <Button
-                                className="btn btn-primary position-relative" variant="contained">
-                                <PostAddOutlined />
-                                <span
-                                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
-                                    99+
-                                </span>
-                            </Button>
-                            <Button className="mx-4" variant="contained">
-                                <Delete />
-                            </Button>
-                            <Button className="mx-4" variant="contained">
-                                <Update />
-                            </Button>
-                        </TableCell>
-                    </TableRow>
-                </TableBody>
+                {display}
             </Table>
+            {addNewUser}
+            {<UserDetail userId={1}/>}
         </>
     )
 }
