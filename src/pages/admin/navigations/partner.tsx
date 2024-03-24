@@ -1,8 +1,8 @@
-import { Add, Sort } from "@material-ui/icons"
-import { Button, Pagination } from "@mui/material"
-import { PartnerCrud } from "./navigationCrudComponents/partner"
+import { Sort } from "@material-ui/icons"
+import { Pagination } from "@mui/material"
 import { useState } from "react"
 import { PaginationInput } from "../../../typedefs/default/paginationInput"
+import { PartnerCrud } from "../components/navigationCrud/partner"
 
 export const Partner=()=>{
     const [search,setSearch]=useState('');

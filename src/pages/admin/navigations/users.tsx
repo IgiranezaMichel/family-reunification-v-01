@@ -1,6 +1,6 @@
 import { Sort } from "@material-ui/icons"
 import { Pagination } from "@mui/material"
-import { UsersCrud } from "./navigationCrudComponents/users"
+import { UsersCrud } from "../components/navigationCrud/users"
 
 export const Users=()=>{
     return(
