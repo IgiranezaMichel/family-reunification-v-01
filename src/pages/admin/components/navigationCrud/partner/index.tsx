@@ -1,9 +1,9 @@
-import { Add, Close, Delete, List, PersonAdd, Update } from "@material-ui/icons"
-import { Avatar, Button,Card,TextField, TextareaAutosize, Typography } from "@mui/material"
-import { CardModal } from "../../../../components/Modal";
-import { useState } from "react";
+import { Add, Close, Delete, List, PersonAdd, Update } from "@material-ui/icons";
+import { Avatar, Button, TextField, TextareaAutosize, Typography } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
-import { ModalSwitch } from "../../../../typedefs/default/ModalSwitch";
+import { useState } from "react";
+import { CardModal } from "../../../../../components/Modal";
+import { ModalSwitch } from "../../../../../typedefs/default/ModalSwitch";
 
 export const PartnerCrud = (props: { search: string, page: PaginationInput }) => {
     const [modal, setModal] = useState<ModalSwitch>({openAdd:false,openDelete:false,openUpdate:false});
@@ -52,7 +52,7 @@ export const PartnerCrud = (props: { search: string, page: PaginationInput }) =>
         </div>
     </CardModal>
     </>
-    const displayView = <main className="container-lg">
+    const displayView = <main>
         <div className="mt-3">
             <Button variant="contained" onClick={() => setModal({...modal,openAdd:true})}><Add /> new </Button>
         </div>

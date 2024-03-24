@@ -5,7 +5,7 @@ export const UsersCrud = () => {
     return (
         <>
             <Button className="mt-3" variant="contained"><PersonAdd /></Button>
-            <Table className="border mt-3">
+            <Table className="border mt-3 mb-5">
                 <TableHead>
                     <TableRow className="bg-body-secondary ">
                         <TableCell className="fw-bold">Name</TableCell>
