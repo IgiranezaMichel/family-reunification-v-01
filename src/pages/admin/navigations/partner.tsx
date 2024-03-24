@@ -1,8 +1,12 @@
 import { Add, Sort } from "@material-ui/icons"
 import { Button, Pagination } from "@mui/material"
 import { PartnerCrud } from "./navigationCrudComponents/partner"
+import { useState } from "react"
+import { PaginationInput } from "../../../typedefs/default/paginationInput"
 
 export const Partner=()=>{
+    const [search,setSearch]=useState('');
+    const [page,setPage]=useState<PaginationInput>({pageNumber:0,pageSize:10,sort:'id'});
     return(
         <>
         <div className="fs-4 fw-bold mb-4">
@@ -21,7 +25,7 @@ export const Partner=()=>{
             </select>
             </div>
         </div>
-       <PartnerCrud/>
+       <PartnerCrud page={} search={search} key={1}/>
         </>
     )
 }
