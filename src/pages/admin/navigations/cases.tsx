@@ -1,10 +1,12 @@
-import { Add, Sort } from "@material-ui/icons"
-import { Button, Pagination } from "@mui/material"
+import { Sort } from "@material-ui/icons"
+import { Pagination } from "@mui/material"
+import { CasesCrud } from "../components/navigationCrud/cases"
 
 export const Cases=()=>{
     return(
-        <div>
-        <div className="fs-4 fw-bold">
+        <main className="container-lg">
+     <section className="bg-primary rounded p-2">
+     <div className="fs-4 fw-bold">
             Manage Cases
         </div>
         <div>
@@ -20,11 +22,8 @@ export const Cases=()=>{
             </select>
             </div>
         </div>
-        <div className="mt-3">
-            <Button variant="contained" className="">
-                <Add/> New
-            </Button>
-        </div>
-        </div>
+     </section>
+        <CasesCrud />
+        </main>
     )
 }
