@@ -1,4 +1,4 @@
-import {FileCopyRounded, Group, Home, Message, People, Person, ReportRounded, Settings } from "@material-ui/icons"
+import {ExitToApp, FileCopyRounded, Group, Home, Message, People, Person, ReportRounded, Settings } from "@material-ui/icons"
 import {useEffect, useState } from "react"
 import { AdminHome } from "../navigations/home";
 import { Partner } from "../navigations/partner";
@@ -9,6 +9,8 @@ import { Chat } from "../navigations/chat";
 import { AdminBody } from "./AdminBody";
 import { ModalContext} from "../../../context.tsx/ModalContext";
 import { ModalSwitch } from "../../../typedefs/default/ModalSwitch";
+import { Setting } from "../../../components/settings";
+import { Logout } from "../../../components/logout";
 
 export const AdminNavigation = () => {
     const [activeNav, setActiveNav] = useState('home');
@@ -76,6 +78,12 @@ export const AdminNavigation = () => {
                             <small className={activeNav == 'settings' ? activeClass : 'd-block'}>Settings</small>
                         </span>
                     </div>
+                    <div className="m-2 text-center" onClick={() => setActiveNav('logout')}>
+                        <span>
+                            <ExitToApp />
+                            <small className={activeNav == 'logout' ? activeClass : 'd-block'}>logout</small>
+                        </span>
+                    </div>
                 </section>
                 <section className={"col-11 border-0 overflow-auto card"}>
                 {
@@ -86,7 +94,8 @@ export const AdminNavigation = () => {
                 :activeNav=='cases'?<Cases/>
                 :activeNav=='report'?<Report/>
                 :activeNav=='chat'?<Chat/>
-                :''
+                :activeNav=='logout'?<Logout/>
+                :<Setting/>
                 }
                 </section>
             </section>
