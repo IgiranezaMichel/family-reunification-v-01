@@ -3,10 +3,10 @@ import { Avatar, Button,Card,TextField, TextareaAutosize, Typography } from "@mu
 import { CardModal } from "../../../../components/Modal";
 import { useState } from "react";
 import { deepOrange } from "@mui/material/colors";
+import { ModalSwitch } from "../../../../typedefs/default/ModalSwitch";
 
 export const PartnerCrud = (props: { search: string, page: PaginationInput }) => {
-    const [openAdd, setOpenAdd] = useState(false);
-    const [openDel, setOpenDel] = useState(false);
+    const [modal, setModal] = useState<ModalSwitch>({openAdd:false,openDelete:false,openUpdate:false});
     const updateHandler = () => {
 
     }
@@ -14,10 +14,10 @@ export const PartnerCrud = (props: { search: string, page: PaginationInput }) =>
 
     }
     const updateView = <>
-        <CardModal bg="white" openModal={openAdd} width="540px" key={1}>
+        <CardModal bg="white" openModal={modal.openAdd} width="540px" key={1}>
             <Typography className="border-bottom border-2 fw-bold">
                 <div className="py-4">
-                <PersonAdd /> New Partner <Close className="float-end" onClick={() => setOpenAdd(false)} />
+                <PersonAdd /> New Partner <Close className="float-end" onClick={() => setModal({...modal,openAdd:false})} />
                 </div>
             </Typography>
             <div className="p-2">
@@ -37,9 +37,9 @@ export const PartnerCrud = (props: { search: string, page: PaginationInput }) =>
     </>
 
     const deleteView =<>
-     <CardModal bg="transparent" openModal={openDel} width="30%">
+     <CardModal bg="transparent" openModal={modal.openDelete} width="30%">
         <Typography className="fw-bold mb-3">
-            Remove organization <Close onClick={()=>setOpenDel(false)} className="float-end"/>
+            Remove organization <Close onClick={()=>setModal({...modal,openDelete:false})} className="float-end"/>
         </Typography>
         <Avatar sx={{ bgcolor: deepOrange[500], margin: 'auto' }}>N</Avatar>
         <div className="mt-2">
@@ -54,7 +54,7 @@ export const PartnerCrud = (props: { search: string, page: PaginationInput }) =>
     </>
     const displayView = <main className="container-lg">
         <div className="mt-3">
-            <Button variant="contained" onClick={() => setOpenAdd(true)}><Add /> new </Button>
+            <Button variant="contained" onClick={() => setModal({...modal,openAdd:true})}><Add /> new </Button>
         </div>
         <div className="row m-auto g-2 col-12 mb-4">
         <section className="col-sm-3">
@@ -64,13 +64,15 @@ export const PartnerCrud = (props: { search: string, page: PaginationInput }) =>
                     <h5 className="card-title text-dark">Title</h5>
                 </div>
                 <div className="modal-footer text-dark border-top py-1">
-                    <Button onClick={()=>{setOpenDel(true)}}>
+                    <Button >
                     <List className="bg-info p-1 text-dark rounded-circle"/>
                     </Button>
-                    <Button onClick={()=>{setOpenDel(true)}} variant="text">
+                    <Button onClick={()=>{setModal({...modal,openDelete:true})}}variant="text">
                     <Delete  className="bg-info p-1 text-dark rounded-circle"/> 
                     </Button>
-                    <Button><Update className="bg-info p-1 text-dark rounded-circle m-1"/></Button>
+                    <Button>
+                        <Update onClick={()=>{setModal({...modal,openUpdate:true})}} className="bg-info p-1 text-dark rounded-circle m-1"/>
+                    </Button>
                 </div>
             </div>
         </section>
