@@ -25,7 +25,7 @@ export const Partner=()=>{
             </select>
             </div>
         </div>
-       <PartnerCrud page={} search={search} key={1}/>
+       <PartnerCrud page={page} search={search} key={1}/>
         </>
     )
 }
