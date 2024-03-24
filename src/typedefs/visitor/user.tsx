@@ -6,6 +6,7 @@ export type UserInput={
     gender:Gender,
     email:string,
     dob:string,
+    phoneNumber:string,
     address?:string,
     country:string,
     nativeCountry:string,
