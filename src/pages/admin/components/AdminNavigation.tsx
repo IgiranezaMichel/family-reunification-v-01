@@ -25,11 +25,11 @@ export const AdminNavigation = () => {
     return (
         <ModalContext.Provider value={myContext}>
             <AdminBody active={activeNav}/>
+            <section>
+            <section className="sticky-top top-0">
             <nav className="bg-primary text-white p-2">
                 <div className="fw-bold"><Person className="fs-1 rounded-circle text-dark p-1 bg-white" /> user name</div>
             </nav>
-           
-            <section  className="sticky-top top-0">
             <div className="modal-footer" style={{ transform: 'translate(0px,-25px)' }}>
                 <Home className={activeNav == 'home' ? activeIconClass : inactiveIconClass} />
                 <Group className={activeNav == 'partner' ? activeIconClass : inactiveIconClass} />
@@ -39,6 +39,9 @@ export const AdminNavigation = () => {
                 <Message className={activeNav == 'chat' ? activeIconClass : inactiveIconClass} />
                 <Settings className={activeNav == 'settings' ? activeIconClass : inactiveIconClass} />
             </div>
+            
+            </section>
+            
             {/*  sidebar navigation*/}
             <section className="row col-12 m-auto" style={{ cursor: 'pointer' }}>
                 <section className={"col-1 card border-0 border-end p-0 rounded-0"}>
