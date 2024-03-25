@@ -1,6 +1,6 @@
 
 import { Typography } from "@mui/material";
-import { Comment, Description, List, Person, PersonAdd, Phone, Wc } from "@material-ui/icons";
+import { Comment, Description, List, Person, Phone, Wc } from "@material-ui/icons";
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator, timelineItemClasses } from "@mui/lab";
 import { BootstrapModal } from "../../../../../components/bootstrapModal";
 
