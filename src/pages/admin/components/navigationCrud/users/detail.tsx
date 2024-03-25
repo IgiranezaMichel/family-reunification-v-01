@@ -1,17 +1,12 @@
-import { useState } from "react"
-import { CardModal } from "../../../../../components/Modal"
-import { ModalSwitch } from "../../../../../typedefs/default/ModalSwitch";
+
 import { Typography } from "@mui/material";
-import { Close,Person, Phone, Wc } from "@material-ui/icons";
+import { Comment, Description, List, Person, PersonAdd, Phone, Wc } from "@material-ui/icons";
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator, timelineItemClasses } from "@mui/lab";
+import { BootstrapModal } from "../../../../../components/bootstrapModal";
 
 export const UserDetail=(props:{userId:number})=>{
-const [modal,setModal]=useState<ModalSwitch>({openAdd:false,openDelete:false,openUpdate:false,openDetail:true});
 return(
-    <>
-        <div>
-            <Close className="float-end" onClick={()=>setModal({...modal,openDetail:false})}/>
-        </div>
+    <BootstrapModal modalTitle={<div>User Details</div>} id="user-details" size="modal-fullscreen" bg="transparent">
         <Typography className="row m-auto col-12">
             <section className="col-sm-3">
                 <div className="card">
@@ -45,14 +40,14 @@ return(
                         <Typography>
                             <small>on 23/07/2023</small> 
                         </Typography>
-                        <div className="modal-footer">
-                            
+                        <div className="modal-footer border-0">
+                            <Description/> <Comment/> <List/>
                         </div>
                     </TimelineContent>
                 </TimelineItem>
-
+            
             </Timeline>
         </div>
-    </>
+    </BootstrapModal>
 )
 }
