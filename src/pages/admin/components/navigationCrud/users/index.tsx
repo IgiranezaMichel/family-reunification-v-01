@@ -19,6 +19,7 @@ export const UsersCrud = () => {
         userName: '',
         password: '',
     })
+    // add new user
     const addNewUser = <BootstrapModal id="add-newUser" bg="" size="modal-lg">
         <Typography className="row container m-auto">
             <div className="mt-1 mb-5">
@@ -80,8 +81,14 @@ export const UsersCrud = () => {
             </div>
         </Typography>
     </BootstrapModal>
-    
-
+    // delete
+const remove=<BootstrapModal id="delete" size="modal-sm" >
+        <div>Are you sure you want to remove <b>abc</b>?</div>
+        <div className="modal-footer">
+            <Button><Delete/></Button>
+        </div>
+    </BootstrapModal>
+// display
     const display = <TableBody>
         <TableRow>
             <TableCell className="col-2 rounded-0 card bg-info">
@@ -100,19 +107,17 @@ export const UsersCrud = () => {
                 <p><LocationOn /> location</p>
             </TableCell>
             <TableCell className="text-center">
-                <Button
-                data-bs-toggle="modal"
+                
+                    <PostAddOutlined data-bs-toggle="modal"
                 data-bs-target="#user-details"
-                    className="btn btn-primary position-relative" variant="contained">
-                    <PostAddOutlined />
+                    className="position-relative"/>
                     <span
                         className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
                         99+
                     </span>
-                </Button>
-                <Button className="mx-4" variant="contained">
-                    <Delete />
-                </Button>
+       
+                    <Delete data-bs-toggle="modal"
+                data-bs-target="#delete"/>
                 <Button className="mx-4" variant="contained">
                     <Update />
                 </Button>
@@ -136,6 +141,7 @@ export const UsersCrud = () => {
                 {display}
             </Table>
             {addNewUser}
+            {remove}
             {<UserDetail userId={1}/>}
         </>
     )
