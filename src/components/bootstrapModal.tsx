@@ -1,56 +1,43 @@
-export const BootstrapModal=()=>{
+import { Box, Typography } from "@mui/material"
+import { FC, ReactNode } from "react"
+type modalItem={
+    bg?:string,
+    id:string,
+    size:'modal-sm'|'modal-md'|'modal-lg'|'modal-fullscreen',
+    modalTitle?:ReactNode,
+    children:ReactNode
+}
+export const BootstrapModal:FC<modalItem>=(props)=>{
     return(
         <>
-        <button
-            type="button"
-            className="btn btn-primary btn-lg"
-            data-bs-toggle="modal"
-            data-bs-target="#modalId"
-        >
-            Launch
-        </button>
-        
-       
-        <div
+        <Typography
             className="modal fade"
-            id="modalId"
+            id={props.id}
             data-bs-backdrop="static"
             data-bs-keyboard="false"
             
             role="dialog"
             aria-labelledby="modalTitleId"
-            aria-hidden="true"
+            aria-hidden="false"
         >
-            <div
-                className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
-                role="document"
-            >
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="modalTitleId">
-                            Modal title
-                        </h5>
-                        <button
-                            type="button"
+            <Box
+                className={"modal-dialog modal-dialog-scrollable modal-dialog-centered "+props.size}
+                role="document">
+                <div className={"modal-content rounded-0 "+props.bg}>
+                    <div className="modal-header border-0">
+                            {props.modalTitle} 
+                        <button type="button"
                             className="btn-close"
                             data-bs-dismiss="modal"
                             aria-label="Close"
                         ></button>
                     </div>
-                    <div className="modal-body">Body</div>
-                    <div className="modal-footer">
-                        <button
-                            type="button"
-                            className="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                        >
-                            Close
-                        </button>
-                        <button type="button" className="btn btn-primary">Save</button>
+                    <div className="modal-body">
+                        {props.children}
                     </div>
                 </div>
-            </div>
-        </div>
+            </Box>
+        </Typography>
         </>
     )
 }
