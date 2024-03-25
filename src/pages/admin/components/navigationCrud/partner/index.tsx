@@ -4,6 +4,7 @@ import { deepOrange } from "@mui/material/colors";
 import { useState } from "react";
 import { CardModal } from "../../../../../components/Modal";
 import { ModalSwitch } from "../../../../../typedefs/default/ModalSwitch";
+import { BootstrapModal } from "../../../../../components/bootstrapModal";
 
 export const PartnerCrud = (props: { search: string, page: PaginationInput }) => {
     const [modal, setModal] = useState<ModalSwitch>({openAdd:false,openDelete:false,openUpdate:false});
@@ -83,6 +84,7 @@ export const PartnerCrud = (props: { search: string, page: PaginationInput }) =>
 
     return (
         <>
+        <BootstrapModal/>
             {displayView}
         </>
     )
