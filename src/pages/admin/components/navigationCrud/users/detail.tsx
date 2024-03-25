@@ -45,38 +45,12 @@ return(
                         <Typography>
                             <small>on 23/07/2023</small> 
                         </Typography>
+                        <div className="modal-footer">
+                            
+                        </div>
                     </TimelineContent>
                 </TimelineItem>
-                <TimelineItem>
-                    <TimelineSeparator>
-                        <TimelineDot />
-                        <TimelineConnector />
-                    </TimelineSeparator>
-                    <TimelineContent sx={{ py: '12px', px: 2 }}>
-                        <Typography variant="h6" component="span">
-                            Eat
-                        </Typography>
-                        <Typography>Because you need strength</Typography>
-                        <Typography>
-                            <small>on 23/07/2023</small> 
-                        </Typography>
-                    </TimelineContent>
-                </TimelineItem>
-                <TimelineItem>
-                    <TimelineSeparator>
-                        <TimelineDot />
-                        <TimelineConnector />
-                    </TimelineSeparator>
-                    <TimelineContent sx={{ py: '12px', px: 2 }}>
-                        <Typography variant="h6" component="span">
-                            Eat
-                        </Typography>
-                        <Typography>Because you need strength</Typography>
-                        <Typography>
-                            <small>on 23/07/2023</small> 
-                        </Typography>
-                    </TimelineContent>
-                </TimelineItem>
+
             </Timeline>
         </div>
     </>
