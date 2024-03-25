@@ -1,11 +1,10 @@
-import { Close, Delete, Email, LocationOn, Person, PersonAdd, Phone, PostAddOutlined, Update, Wc } from "@material-ui/icons"
-import { Avatar, Button, FormControl, InputLabel, MenuItem, NativeSelect, Select, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from "@mui/material"
-import { CardModal } from "../../../../../components/Modal"
+import { Delete, Email, LocationOn, Person, PersonAdd, Phone, PostAddOutlined, Update, Wc } from "@material-ui/icons"
+import { Avatar, Button, FormControl, InputLabel, NativeSelect, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from "@mui/material"
 import { useState } from "react"
-import { ModalSwitch } from "../../../../../typedefs/default/ModalSwitch"
 import { UserInput } from "../../../../../typedefs/visitor/user"
 import { Gender } from "../../../../../enum/gender"
 import { UserDetail } from "./detail"
+import { BootstrapModal } from "../../../../../components/bootstrapModal"
 
 export const UsersCrud = () => {
     const [user, setUser] = useState<UserInput>({
@@ -20,14 +19,11 @@ export const UsersCrud = () => {
         userName: '',
         password: '',
     })
-    const [modal, setModal] = useState<ModalSwitch>({ openAdd: false, openDelete: false, openUpdate: false });
-    const addNewUser = <CardModal width="75%" bg="white" openModal={modal.openAdd} >
-        <Typography className="row">
-            <div className="clo-12"> <span className="fw-bold"><PersonAdd /> Add new user</span>
-                <span className="float-end"><Close onClick={()=>setModal({...modal,openAdd:false})}/></span>
-            </div>
-            <div className="m-5">
+    const addNewUser = <BootstrapModal id="add-newUser" bg="" size="modal-lg">
+        <Typography className="row container m-auto">
+            <div className="mt-1 mb-5">
                 <Avatar className="m-auto" />
+                <h5 className="text-center">Add new user</h5>
             </div>
 
             <section className="col-sm-6">
@@ -83,7 +79,8 @@ export const UsersCrud = () => {
                 <Button variant="outlined" className="fw-bold">save</Button>
             </div>
         </Typography>
-    </CardModal>
+    </BootstrapModal>
+    
 
     const display = <TableBody>
         <TableRow>
@@ -104,6 +101,8 @@ export const UsersCrud = () => {
             </TableCell>
             <TableCell className="text-center">
                 <Button
+                data-bs-toggle="modal"
+                data-bs-target="#user-details"
                     className="btn btn-primary position-relative" variant="contained">
                     <PostAddOutlined />
                     <span
@@ -123,7 +122,8 @@ export const UsersCrud = () => {
 
     return (
         <>
-            <Button className="mt-3" onClick={() => setModal({ ...modal, openAdd: true })} variant="contained"><PersonAdd /></Button>
+            <Button className="mt-3"  data-bs-toggle="modal"
+                data-bs-target="#add-newUser" variant="contained"><PersonAdd /></Button>
             <Table className="border mt-3 mb-5 table-responsive">
                 <TableHead>
                     <TableRow className="bg-body-secondary ">
