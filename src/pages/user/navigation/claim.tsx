@@ -8,7 +8,6 @@ export const Claim=()=>{
     const [search,setSearch]=useState('');
     return(
         <>
-        <Divider  className="border border-2"/>
         <div className="bg-info px-4 py-3">
         <div className="display-6 fw-bold mb-3 pt-2">
             Recent Post
