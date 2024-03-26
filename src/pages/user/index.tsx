@@ -8,30 +8,30 @@ export const User = () => {
     const [isSticky, setIsSticky] = useState(false);
 
     useEffect(() => {
-      const handleScroll = () => {
-        const offset = window.scrollY;
-        if (offset === 0) {
-          setIsSticky(true);
-        } else {
-          setIsSticky(false);
-        }
-      };
-  
-      window.addEventListener('scroll', handleScroll);
-  
-      // Clean up the event listener
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
+        const handleScroll = () => {
+            const offset = window.scrollY;
+            if (offset === 0) {
+                setIsSticky(true);
+            } else {
+                setIsSticky(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        // Clean up the event listener
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
     return (
         <Navigation activeUrl="" items={userUrl} navBarClass="bg-info">
             <div className="col-12 card">
                 <img src="/public/Visitor/manyPeople.png" alt="" />
             </div>
-            <div className="container-lg p-0 border-2 rounded-0 border-white card m-auto" style={{ transform: 'translate(0px,-150px)',position:'sticky',top:0}}>
-                <nav 
-                    className="navbar navbar-expand-sm navbar-light bg-info sticky-top top-0" style={{backgroundColor:isSticky?'blue':''}}>
+            <div className="container-lg p-0 border-2 rounded-0 border-white card m-auto" style={{ transform: 'translate(0px,-150px)', position: 'sticky', top: 0 }}>
+                <nav
+                    className="navbar navbar-expand-sm navbar-light bg-info sticky-top top-0" style={{ backgroundColor: isSticky ? 'blue' : '' }}>
                     <div className="container">
                         <button
                             className="navbar-toggler d-lg-none"
