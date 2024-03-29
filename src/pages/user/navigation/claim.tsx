@@ -1,4 +1,4 @@
-import { Button, Card, Divider, FormControl, InputLabel, NativeSelect, Pagination, TextField } from "@mui/material"
+import { Card, FormControl, InputLabel, NativeSelect, Pagination, TextField } from "@mui/material"
 import { useState } from "react"
 import { Gender } from "../../../enum/gender";
 import { FeedbackOutlined, HourglassEmptyRounded,ThumbsUpDown } from "@material-ui/icons";

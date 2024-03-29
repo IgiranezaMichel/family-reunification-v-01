@@ -1,7 +1,7 @@
 import { Delete, Email, LocationOn, Person, PersonAdd, Phone, PostAddOutlined, Update, Wc } from "@material-ui/icons"
 import { Avatar, Button, FormControl, InputLabel, NativeSelect, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from "@mui/material"
 import { useState } from "react"
-import { UserInput } from "../../../../../typedefs/visitor/user"
+import { UserInput } from "../../../../../typedefs/visitorInput/user"
 import { Gender } from "../../../../../enum/gender"
 import { UserDetail } from "./detail"
 import { BootstrapModal } from "../../../../../components/bootstrapModal"
