@@ -4,7 +4,7 @@ import { Button, Tooltip, Typography } from "@mui/material"
 
 export const FamilyCrud=()=>{
     return(
-        <main>
+        <main >
             <span className="float-end">
             <Button variant="contained" className="rounded-0 m-1">Join my Family</Button>
             <Button variant="contained" className="rounded-0 ">Claim Join Code</Button>
