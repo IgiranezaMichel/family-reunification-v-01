@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Response } from "../../typedefs/response";
 
 export const useOrganization=(organizationInput:PaginationInput)=>{
-const [response,setResponse]=useState<Response>({code:200,responseContent:[],responseReady:false});
+const [response,setResponse]=useState<Response>({code:200,responseContent:{},responseReady:false});
 const {refetch,data}=useQuery(ORGANIZATION_PAGE,{variables:{organizationPageInput:organizationInput}});
 useEffect(
     ()=>{
