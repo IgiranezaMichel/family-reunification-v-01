@@ -1,14 +1,29 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Sort } from "@material-ui/icons"
 import { Pagination } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { PaginationInput } from "../../../typedefs/default/paginationInput"
 import { PartnerCrud } from "../components/navigationCrud/partner"
+import { OrganizationContext, useOrganizationContext } from "../../../context.tsx/OrganizationContext"
+import { useOrganization } from "../../../controller/organization/query"
 
 export const Partner=()=>{
     const [search,setSearch]=useState('');
     const [page,setPage]=useState<PaginationInput>({pageNumber:0,pageSize:10,sort:'id'});
+    const organizationResult=useOrganization(page);
+    const {data,setData}=useState<any>(organizationResult);
+    useEffect(
+        ()=>{
+            
+        }
+    )
+    const updateData=()=>{
+        organizationResult.refetch();
+    }
     return(
-        <main className="container-lg m-auto">
+        <>
+        {organizationResult.response.responseReady&&<OrganizationContext.Provider value={{data,updateData}}>
+            <main className="container-lg m-auto">
         <section className="bg-primary p-2 rounded">
         <div className="fs-4 fw-bold mb-4 text-white">
            Recent Partners
@@ -30,5 +45,7 @@ export const Partner=()=>{
         </section>
        <PartnerCrud page={page} search={search} key={1}/>
         </main>
+        </OrganizationContext.Provider>}
+        </>
     )
 }
