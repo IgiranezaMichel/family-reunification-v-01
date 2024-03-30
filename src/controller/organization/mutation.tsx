@@ -10,8 +10,11 @@ export const useRegisterOrganization=(organizationInput:OrganizationInput)=>{
     const saveOrganizationHandler=()=>{
        saveOrganization({variables:{organizationInput:organizationInput}})
        .then(data=>{
-        const result=data.data.saveOrganization.split[''];
-        setResponse({code:Number(result[0]),responseContent:result[1],responseReady:true});
+        const result=String(data.data.saveOrganization).split(',');
+        
+        console.log(result[0].split(' ')[0].split('<')[1])
+        setResponse({code:Number(result[0].split(' ')[0].split('<')[1]),responseContent:result[1],responseReady:true})
+
        })
        .catch(err=>console.log(err))
     }
