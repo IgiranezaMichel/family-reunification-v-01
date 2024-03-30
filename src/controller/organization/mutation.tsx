@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client"
-import { REGISTER_ORGANIZATION, REMOVE_ORGANIZATION } from "../../../graphql/mutation/organization"
-import { OrganizationInput } from "../../../typedefs/organization"
-import { Response } from "../../../typedefs/response";
+import { REGISTER_ORGANIZATION, REMOVE_ORGANIZATION } from "../../graphql/mutation/organization"
+import { OrganizationInput } from "../../typedefs/organization"
+import { Response } from "../../typedefs/response";
 import { useState } from "react";
 
 export const useRegisterOrganization=(organizationInput:OrganizationInput)=>{
