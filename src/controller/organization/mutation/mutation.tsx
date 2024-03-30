@@ -6,12 +6,12 @@ import { useState } from "react";
 
 export const useRegisterOrganization=(organizationInput:OrganizationInput)=>{
     const [saveOrganization]=useMutation(REGISTER_ORGANIZATION);
-    const [response,setResponse]=useState<Response>({code:0,message:'',isLoading:true});
+    const [response,setResponse]=useState<Response>({code:0,message:'',responseReady:false});
     const saveOrganizationHandler=()=>{
        saveOrganization({variables:{organizationInput:organizationInput}})
        .then(data=>{
         const result=data.data.saveOrganization.split[''];
-        setResponse({code:Number(result[0]),message:result[1],isLoading:false});
+        setResponse({code:Number(result[0]),message:result[1],responseReady:true});
        })
        .catch(err=>console.log(err))
     }
@@ -19,12 +19,12 @@ export const useRegisterOrganization=(organizationInput:OrganizationInput)=>{
 }
 export const useDeleteOrganization=(id:number)=>{
     const [deleteOrganization]=useMutation(REMOVE_ORGANIZATION);
-    const [response,setResponse]=useState<Response>({code:0,message:'',isLoading:true});
+    const [response,setResponse]=useState<Response>({code:0,message:'',responseReady:false});
     const removeOrganizationHandler=()=>{
        deleteOrganization({variables:{id:id}})
        .then(data=>{
         const result=data.data.saveOrganization.split[''];
-        setResponse({code:Number(result[0]),message:result[1],isLoading:false});
+        setResponse({code:Number(result[0]),message:result[1],responseReady:true});
        })
        .catch(err=>console.log(err))
     }
