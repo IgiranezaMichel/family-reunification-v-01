@@ -11,7 +11,6 @@ export const useRegisterOrganization=(organizationInput:OrganizationInput)=>{
        saveOrganization({variables:{organizationInput:organizationInput}})
        .then(data=>{
         const result=String(data.data.saveOrganization).split(',');
-        
         console.log(result[0].split(' ')[0].split('<')[1])
         setResponse({code:Number(result[0].split(' ')[0].split('<')[1]),responseContent:result[1],responseReady:true})
 
