@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Sort } from "@material-ui/icons"
-import { Pagination } from "@mui/material"
+import { CircularProgress, Pagination, Skeleton } from "@mui/material"
 import { useState } from "react"
 import { PaginationInput } from "../../../typedefs/default/paginationInput"
 import { PartnerCrud } from "../components/navigationCrud/partner"
@@ -17,13 +17,23 @@ export const Partner = () => {
     }
     return (
         <>
-            
+            {!organizationResult.response.responseReady&&<>
+            <Skeleton width={'100%'} height={29} className="bg-primary"/>
+            <Skeleton width={'10%'} height={10} className="bg-primary"/>
+            <div className="row">
+                <Skeleton width={'50%'} height={100} className="bg-primary"/>
+                <Skeleton width={'50%'} height={100} className="bg-primary"/>
+            </div>
+            </>}
             {organizationResult.response.responseReady && <OrganizationContext.Provider value={{ data:organizationResult.response, updateData }}>
                 <main className="container-lg m-auto">
                     <section className="bg-primary p-2 rounded">
-                        <div className="fs-4 fw-bold mb-4 text-white">
-                            Recent Partners
+                        <div className="fs-4 fw-bold  text-white">
+                            <div>
+                                Recent Partners
+                            </div>
                         </div>
+                        <div className="mb-4 text-white fw-bold">Total Partners <span className="badge bg-black">{organizationResult.response.responseContent&&<>{organizationResult.response.responseContent.size}</>}</span></div>
                         <div>
                             <input onChange={(e) => setSearch(e.target.value)} type="search" placeholder="search ..."
                                 className="float-end border-0 border-bottom border-2 border-white bg-primary col-sm-4" />
@@ -39,7 +49,7 @@ export const Partner = () => {
                             </div>
                         </div>
                     </section>
-                    <PartnerCrud page={page} search={search} key={1} />
+                    <PartnerCrud search={search} key={1} />
                 </main>
             </OrganizationContext.Provider>}
         </>
