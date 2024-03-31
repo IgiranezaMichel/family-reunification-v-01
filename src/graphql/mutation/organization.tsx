@@ -6,7 +6,7 @@ mutation($organizationInput:OrganizationInput){
 }
 `
 export const REMOVE_ORGANIZATION=gql`
-mutation($id:id){
+mutation($id:Long){
     removeOrganization(id:$id)
 }
 `
