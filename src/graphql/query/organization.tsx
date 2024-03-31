@@ -7,9 +7,12 @@ query($organizationPageInput:PaginationInput){
     pageSize
     size
     content{
+      id
       name
       logo
       address
+      description
+      timeStamp
     }
     }
 }
