@@ -8,7 +8,8 @@ import { BootstrapModal } from "../../../../../components/bootstrapModal"
 
 export const UsersCrud = () => {
     const [user, setUser] = useState<UserInput>({
-        name: '',
+        firstName: '',
+        lastName: '',
         gender: Gender.MALE,
         profilePicture: '',
         dob: '',
