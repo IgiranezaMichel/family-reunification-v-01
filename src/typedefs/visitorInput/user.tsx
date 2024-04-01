@@ -4,7 +4,7 @@ export type UserInput={
     id?:number
     firstName:string
     lastName:string
-    profilePicture:string
+    base64ProfilePicture:string
     gender:Gender
     email:string
     phoneNumber:string
