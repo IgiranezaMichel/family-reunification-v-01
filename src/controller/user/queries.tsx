@@ -16,7 +16,7 @@ useEffect(
             setResponse({code:200,responseContent:data,responseReady:true})
         })
         .catch(err=>err)
-    }
+    },[data,paginationInput]
 )
 return {response,refetch}
 }
