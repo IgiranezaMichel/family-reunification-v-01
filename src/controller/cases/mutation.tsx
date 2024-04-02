@@ -10,10 +10,13 @@ export const useSaveCases=(caseInput:CaseInput,customerId:number)=>{
         code:0,responseContent:'',responseReady:false
     })
     const saveHandler=async()=>{
-        save({variables:{caseInput:caseInput,customerId:customerId}})
+        await save({variables:{caseInput:caseInput,customerId:customerId}})
         .then((data)=>{
-        const result=data.data.saveCases.split[''];
-        setResponse({code:Number(result[0]),responseContent:result[1],responseReady:true});
+            
+        const resultString=data.data.saveCases as string;
+        const resultCode=resultString.includes('405') as boolean;
+        const content=resultString.substring(resultString.indexOf(',')+1,resultString.lastIndexOf(','));
+        setResponse({code:Number(resultCode?405:200),responseContent:content,responseReady:true});
         })
     }
     return {saveHandler,response}
