@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { UserInput } from '../../typedefs/visitorInput/user';
-import { Gender } from '../../enum/gender';
 import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@mui/material';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSaveUser } from '../../controller/user/mutation';
+import { Gender } from '../../enum/gender';
+import { UserInput } from '../../typedefs/visitorInput/customer';
 export const Signup = () => {
     const [user, setUser] = useState<UserInput>({
         country: '',

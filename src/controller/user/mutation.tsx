@@ -1,30 +1,30 @@
 import { useMutation } from "@apollo/client";
-import { UserInput } from "../../typedefs/visitorInput/user";
-import { DELETE_USER, REGISTER_USER } from "../../graphql/mutation/user";
 import { useState } from "react";
+import {DELETE_CUSTOMER, REGISTER_CUSTOMER } from "../../graphql/mutation/customer";
 import { Response } from "../../typedefs/response";
+import { CustomerInput } from "../../typedefs/visitorInput/customer";
 
-export const useSaveUser=(userInput:UserInput)=>{
-const [saveUser]=useMutation(REGISTER_USER);
+export const useSaveCustomer=(customerInput:CustomerInput)=>{
+const [saveCustomer]=useMutation(REGISTER_CUSTOMER);
 const [response,setResponse]=useState<Response>({
     code:0,responseContent:'',responseReady:false
 })
 const saveHandler=async()=>{
-    await saveUser({variables:{userInput:userInput}}).then(data=>{
-        const result=data.data.saveUser.split[''];
+    await saveCustomer({variables:{customerInput:customerInput}}).then(data=>{
+        const result=data.data.saveCustomer.split[''];
         setResponse({code:Number(result[0]),responseContent:result[1],responseReady:true});
     }).catch(err=>console.log(err))
 }
 return {saveHandler,response}
 }
-export const useDeleteUser=(id:number)=>{
-    const [deleteUser]=useMutation(DELETE_USER);
+export const useDeleteCustomer=(id:number)=>{
+    const [deleteCustomer]=useMutation(DELETE_CUSTOMER);
     const [response,setResponse]=useState<Response>({
         code:0,responseContent:'',responseReady:false
     })
     const deleteHandler=()=>{
-        deleteUser({variables:{id:id}}).then(data=>{
-            const result=data.data.saveUser.split[''];
+        deleteCustomer({variables:{id:id}}).then(data=>{
+            const result=data.data.saveCustomer.split[''];
             setResponse({code:Number(result[0]),responseContent:result[1],responseReady:true});
         }).catch(err=>console.log(err))
     }

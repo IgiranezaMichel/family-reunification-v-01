@@ -1,21 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { Avatar, Divider, Typography } from "@mui/material";
 import { CalendarToday, Comment, Description, Email, List, LocationOn, Map, Person, Phone, Wc } from "@material-ui/icons";
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator, timelineItemClasses } from "@mui/lab";
-import { BootstrapModal } from "../../../../../components/bootstrapModal";
-import { useUserContext } from "../../../../../context.tsx/UserContext";
+import { Avatar, Divider, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { BootstrapModal } from "../../../../../components/bootstrapModal";
+import { useCustomerContext } from "../../../../../context.tsx/customerContext";
 
-export const UserDetail=(props:{arrIndex:number})=>{
-    const {data}=useUserContext();
-    const [user,setUser]=useState<any>({});
+export const CustomerDetail=(props:{arrIndex:number})=>{
+    const {data}=useCustomerContext();
+    const [customer,setCustomer]=useState<any>({});
     useEffect(
         ()=>{
             const fetch=async()=>{
                 if(data!=undefined){
                     const result=data[props.arrIndex];
-                    setUser(result);
+                    setCustomer(result);
                 }
             }
             fetch();
@@ -24,31 +23,31 @@ export const UserDetail=(props:{arrIndex:number})=>{
 return(
     <BootstrapModal modalTitle={
        <>
-       {user&&<div className="d-flex">
+       {customer&&<div className="d-flex">
             <Avatar/>
-            <div className="card justify-content-center border-0"> {user.firstName} {user.lastName} Details</div>
+            <div className="card justify-content-center border-0"> {customer.firstName} {customer.lastName} Details</div>
         </div>}
        </>
     } id="user-details" size="modal-fullscreen" bg="transparent">
-        {user&&<Typography className="row m-auto col-12">
+        {customer&&<Typography className="row m-auto col-12">
             <section className="col-md-3">
                 <div className="card rounded-0">
-                    <img src={"data:image/png;base64,"+user.profilePicture}className="card-img" />
+                    <img src={"data:image/png;base64,"+customer.profilePicture}className="card-img" />
                 </div>
             </section>
             <section className="col-md-4 justify-content-center card border-0">
-                <p><Person/>{user.firstName} {user.lastName}</p>
-                <p><Wc/>{user.gender}</p>
-                <p><Map/>{user.country}</p>
-                <p><Map/>{user.nativeCountry}</p>
-                <p><CalendarToday/>{user.dob}</p>
+                <p><Person/>{customer.firstName} {customer.lastName}</p>
+                <p><Wc/>{customer.gender}</p>
+                <p><Map/>{customer.country}</p>
+                <p><Map/>{customer.nativeCountry}</p>
+                <p><CalendarToday/>{customer.dob}</p>
             </section>
             <section className="col-md-4 justify-content-center card border-0">
-                <p><Email/>{user.email} {user.lastName}</p>
-                <p><Phone/>{user.phoneNumber}</p>
-                <p><LocationOn/>{user.address}</p>
-                <p><CalendarToday/>{user.country}</p>
-                <p><CalendarToday/>{user.country}</p>
+                <p><Email/>{customer.email} {customer.lastName}</p>
+                <p><Phone/>{customer.phoneNumber}</p>
+                <p><LocationOn/>{customer.address}</p>
+                <p><CalendarToday/>{customer.country}</p>
+                <p><CalendarToday/>{customer.country}</p>
             </section>
         </Typography>}
         <Divider className="border border-2"/>

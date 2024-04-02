@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CalendarToday, Delete, Email, LocationOn, Person, PersonAdd, Phone, PostAddOutlined, Update, Wc } from "@material-ui/icons"
-import { Button, Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material"
+import { Button, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import { useState } from "react"
-import { UserDetail } from "./detail"
-import { useUserContext } from "../../../../../context.tsx/UserContext"
-import { DeleteUser } from "./delete"
+import { useCustomerContext } from "../../../../../context.tsx/customerContext"
 import { AddUser } from "./createOrUpdate"
+import { DeleteUser } from "./delete"
+import { CustomerDetail } from "./detail"
 
-export const UsersCrud = () => {
+export const CustomerCrud = () => {
     const [arrIndex, setArrIndex] = useState(0)
     const [action,setAction]=useState('');
-    const { data } = useUserContext();
+    const { data } = useCustomerContext();
     const display = <TableBody>
         {data != undefined && data.map(
             (result: any, index: number) => {
@@ -61,7 +61,7 @@ export const UsersCrud = () => {
                 {display}
             </Table>
              <DeleteUser arrIndex={arrIndex}/>
-            <UserDetail arrIndex={arrIndex} />
+            <CustomerDetail arrIndex={arrIndex} />
             <AddUser action={action} arrIndex={arrIndex}/>
         </>
     )

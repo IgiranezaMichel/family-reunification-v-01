@@ -1,13 +1,13 @@
 import { Sort } from "@material-ui/icons"
 import { NativeSelect, Pagination, TextField } from "@mui/material"
-import { UsersCrud } from "../components/navigationCrud/users"
-import { useUserPage } from "../../../controller/user/queries"
 import { useState } from "react"
+import { CustomerContext } from "../../../context.tsx/customerContext"
+import { useCustomerPage } from "../../../controller/user/queries"
 import { PaginationInput } from "../../../typedefs/default/paginationInput"
-import { UserContext } from "../../../context.tsx/UserContext"
-export const Users = () => {
+import { CustomerCrud } from "../components/navigationCrud/users"
+export const Customers = () => {
     const [page, setPage] = useState<PaginationInput>({ pageNumber: 0, pageSize: 10, sort: "firstName" })
-    const { response,refetch } = useUserPage(page);
+    const { response,refetch } = useCustomerPage(page);
     const updateData=()=>{
         refetch();
     }
@@ -16,7 +16,7 @@ export const Users = () => {
         {!response.responseContent&&<>
         loading ...
         </>}
-        {response.responseContent&&<UserContext.Provider value={{data:response.responseContent.content,updateData}}>
+        {response.responseContent&&<CustomerContext.Provider value={{data:response.responseContent.content,updateData}}>
             <main className="container-lg">
                 <section className="p-2 bg-primary rounded">
                     <div >
@@ -42,9 +42,9 @@ export const Users = () => {
                         </div>
                     </div>
                 </section>
-                <UsersCrud />
+                <CustomerCrud />
             </main>
-        </UserContext.Provider>}
+        </CustomerContext.Provider>}
         </>
     )
 }

@@ -1,4 +1,3 @@
-import { Comment, Description, List } from "@material-ui/icons"
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator, timelineItemClasses } from "@mui/lab"
 import { Typography } from "@mui/material"
 import { FC, ReactNode } from "react"

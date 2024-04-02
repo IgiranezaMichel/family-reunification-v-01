@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button } from "@mui/material"
-import { BootstrapModal } from "../../../../../components/bootstrapModal"
 import { Delete } from "@material-ui/icons"
+import { Button } from "@mui/material"
 import { useEffect, useState } from "react"
-import { useUserContext } from "../../../../../context.tsx/UserContext"
+import { BootstrapModal } from "../../../../../components/bootstrapModal"
+import { useCustomerContext } from "../../../../../context.tsx/customerContext"
 
 export const DeleteUser=(props:{arrIndex:number})=>{
-    const {data}=useUserContext();
-    const [user,setUser]=useState<any>({});
+    const {data}=useCustomerContext();
+    const [customer,setCustomer]=useState<any>({});
     useEffect(
         ()=>{
             const fetch=async()=>{
                 if(data!=undefined){
                     const result=data[props.arrIndex];
-                    setUser(result);
+                    setCustomer(result);
                 }
             }
             fetch();
@@ -21,7 +21,7 @@ export const DeleteUser=(props:{arrIndex:number})=>{
     )
     return <>
     <BootstrapModal id="delete" size="modal-sm" >
-        {user&&<div>Are you sure you want to remove <b>{user.firstName} {user.lastName}</b>?</div>}
+        {customer&&<div>Are you sure you want to remove <b>{customer.firstName} {customer.lastName}</b>?</div>}
         <div className="modal-footer">
             <Button><Delete /></Button>
         </div>

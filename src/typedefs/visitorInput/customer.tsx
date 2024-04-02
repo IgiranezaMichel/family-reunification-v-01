@@ -1,6 +1,6 @@
 import { Gender } from "../../enum/gender"
 
-export type UserInput={
+export type CustomerInput={
     id?:number
     firstName:string
     lastName:string

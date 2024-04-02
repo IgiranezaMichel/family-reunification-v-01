@@ -2,13 +2,13 @@ import { Avatar, Divider } from "@mui/material"
 import { Navigation } from "../../components/Navigation"
 import { userUrl } from "../../url/userUrl"
 import { Claim } from "./navigation/claim"
-import { useEffect, useState } from "react"
+import {useState } from "react"
 import { Location } from "./navigation/location"
 import { MyFamily } from "./navigation/family"
 import { Chat } from "./navigation/chat"
 import { Setting } from "../../components/settings"
 
-export const User = () => {
+export const Customer = () => {
     const [url, setUrl] = useState('claims');
     const active='nav-item bg-info border border-3 border-white';
     return (
