@@ -1,60 +1,42 @@
-import { Delete, Description, List, LocationOn, Person, PersonAdd, SortOutlined, Update, VisibilityOff } from "@material-ui/icons"
-import { Button, Card, Pagination, Tooltip } from "@mui/material"
-
-export const AdminHome=()=>{
+import { ArrowDownward, ArrowUpward } from "@material-ui/icons"
+import { GaugeCard } from "../../../components/GuageCard"
+import { BarChatCard } from "../../../components/barcharts"
+import { TimelineComponent } from "../../../components/TimelineComponent"
+export const AdminHome = () => {
     return (
-        <main className="container">
-        
-        <div >
-       <div className="fs-4 text-center fw-bold mb-4">
-       Recent post cases
-       </div>
-       <div>
-        <input type="search" className="float-end border-0 border-bottom border-dark border-2 col-sm-4"  placeholder='search ...' style={{clear:'both'}}/>
-       </div>
-        <div className="d-flex">
-
-       Page 1 out of 6 <Pagination></Pagination>
-
-        <span className="mx-2"><SortOutlined/><select className="">
-                <option selected>Sort by</option>
-                <option value="">New Delhi</option>
-                <option value="">Istanbul</option>
-                <option value="">Jakarta</option>
-            </select></span>
-        </div>
-        <Button  variant="contained"><PersonAdd/>New</Button>
-        </div>
-        <div style={{clear:'both'}} className="mt-5">
-        <Card elevation={3} className="row p-0 rounded-0 mb-3">
-            <div className="col-sm-2 d-flex justify-content-center align-items-center">
-            <img src="/public/Visitor/Login.png" className="card-img p-0 rounded-0"/>
-            </div>
-           <section className="col-sm-8 row m-auto">
-           <section className="col-sm-6">
-                <div><Person/> Michael</div>
-                <div><LocationOn/> Michael</div>
-            </section>
-            <section className="col-sm-6">
-                <div>
-                <Tooltip title='date of birth' placement="top">
-                <b>Dob</b>
-                </Tooltip>
+        <main className="container row">
+            <div className="col-sm-5">
+                <GaugeCard gaugeColor="blue" cardClass="col-12" elevation={4} gaugeTitle="Save" gaugeValue={28}>
+                    <div className="row col-12 m-auto">
+                        <div className="card col-6 p-0 rounded-0">
+                            <div className="bg-body-tertiary p-1">
+                                <span><span className="bg-primary float-end rounded text-white">16% <ArrowUpward /></span><small>Number of akdners</small> </span>
+                            </div>
+                            <div className="display-5 fw-bold">
+                                1,190
+                            </div>
+                        </div>
+                        <div className="card col-6 p-0 rounded-0">
+                            <div className="bg-body-tertiary p-1">
+                                <span><span className="bg-primary float-end rounded text-white">16% <ArrowDownward /></span><small>Number of akdners</small> </span>
+                            </div>
+                            <div className="display-5 fw-bold">
+                                1,190
+                            </div>
+                        </div>
                     </div>
-                <div><b>Lost date</b></div>
-            </section>
-            <section className="col-sm-12 border-top border-2 m-auto">
-                <Description/>
-            </section>
-           </section>
-            <div className="col-sm-1 border-2 border-start">
-                <Button><Update/></Button>
-                <Button><Delete/> </Button>
-                <Button><VisibilityOff/> </Button>
-                <Button><List/> </Button>
+                </GaugeCard>
             </div>
-        </Card>
-        </div>
+            <div className="col-sm-7 card rounded-0">
+                <BarChatCard title="djgoe" />
+            </div>
+            <div className="fs-5 fw-bold mt-4">Recent Posts</div>
+            <TimelineComponent title="Recent">
+                <div>This ...</div>
+            </TimelineComponent>
+            <TimelineComponent title="Recent">
+                <div>This ...</div>
+            </TimelineComponent>
         </main>
     )
-}
+}   
