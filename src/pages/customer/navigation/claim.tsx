@@ -1,8 +1,8 @@
-import { Card, FormControl, InputLabel, NativeSelect, Pagination, TextField } from "@mui/material"
-import { useState } from "react"
+import { FeedbackOutlined, HourglassEmptyRounded, ThumbsUpDown } from "@material-ui/icons";
+import { Card, FormControl, InputLabel, NativeSelect, Pagination, TextField } from "@mui/material";
+import { useState } from "react";
 import { Gender } from "../../../enum/gender";
-import { FeedbackOutlined, HourglassEmptyRounded,ThumbsUpDown } from "@material-ui/icons";
-import { ClaimCrud } from "../component/navigationCrud/claims";
+import { ClaimCrud } from "../navigationCrud/claims";
 
 export const Claim=()=>{
     const [search,setSearch]=useState('');

@@ -1,6 +1,6 @@
 import { People } from "@material-ui/icons"
 import { Card } from "@mui/material"
-import { FamilyCrud } from "../component/navigationCrud/family"
+import { FamilyCrud } from "../navigationCrud/family"
 
 export const MyFamily = () => {
     return (

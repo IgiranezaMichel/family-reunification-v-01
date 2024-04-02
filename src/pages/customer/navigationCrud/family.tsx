@@ -1,4 +1,4 @@
-import { Comment, Description, List } from "@material-ui/icons"
+import {  List } from "@material-ui/icons"
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator, timelineItemClasses } from "@mui/lab"
 import { Button, Tooltip, Typography } from "@mui/material"
 

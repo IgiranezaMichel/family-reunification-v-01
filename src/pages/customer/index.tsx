@@ -1,12 +1,12 @@
 import { Avatar, Divider } from "@mui/material"
+import { useState } from "react"
 import { Navigation } from "../../components/Navigation"
-import { userUrl } from "../../url/userUrl"
-import { Claim } from "./navigation/claim"
-import {useState } from "react"
-import { Location } from "./navigation/location"
-import { MyFamily } from "./navigation/family"
-import { Chat } from "./navigation/chat"
 import { Setting } from "../../components/settings"
+import { userUrl } from "../../url/userUrl"
+import { Chat } from "./navigation/chat"
+import { Claim } from "./navigation/claim"
+import { MyFamily } from "./navigation/family"
+import { Location } from "./navigation/location"
 
 export const Customer = () => {
     const [url, setUrl] = useState('claims');

@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { Admin } from './pages/admin'
+import { Customer } from './pages/customer'
 import { Index } from './pages/visitor'
 import { Login } from './pages/visitor/Login'
 import { Signup } from './pages/visitor/Signup'
-import { Admin } from './pages/admin'
-import { Customer } from './pages/user'
 function App() {
 return (
 <>
