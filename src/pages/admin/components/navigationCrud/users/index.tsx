@@ -9,14 +9,14 @@ import { AddUser } from "./createOrUpdate"
 
 export const UsersCrud = () => {
     const [arrIndex, setArrIndex] = useState(0)
+    const [action,setAction]=useState('');
     const { data } = useUserContext();
-    // add new user
     const display = <TableBody>
         {data != undefined && data.map(
             (result: any, index: number) => {
-                return <TableRow key={index}>
+                return <TableRow key={index} className="border border-4 border-white">
                     <TableCell className="col-2 rounded-0 card bg-info">
-                        <img src={'data:image/png;base64,' + result.profilePicture} alt="" className="card-img" />
+                        <img src={'data:image/png;base64,' + result.profilePicture} alt="" className="card-img rounded-0" />
                         <div className="text-center">
                             <b className="m-auto"><Person />{result.firstName} {result.lastName}</b>
                         </div>
@@ -37,7 +37,7 @@ export const UsersCrud = () => {
                         <Delete data-bs-toggle="modal" className="bg-danger text-white fs-2 rounded p-1 mx-2"
                             data-bs-target="#delete" />
                             <Update className="bg-primary text-white fs-2 rounded p-1 mx-2" 
-                            data-bs-toggle="modal" 
+                            data-bs-toggle="modal" onClick={()=>{setAction('Update User Information');setArrIndex(index)}}
                             data-bs-target="#add-newUser"/>
                     </TableCell>
                 </TableRow>
@@ -48,7 +48,7 @@ export const UsersCrud = () => {
     return (
         <>
             <Button className="mt-3" data-bs-toggle="modal"
-                data-bs-target="#add-newUser" variant="contained"><PersonAdd /></Button>
+                data-bs-target="#add-newUser" onClick={()=>setAction('addUser')} variant="contained"><PersonAdd /></Button>
             <Table className="border mt-3 mb-5 table-responsive">
                 <TableHead>
                     <TableRow className="bg-body-secondary ">
@@ -62,7 +62,7 @@ export const UsersCrud = () => {
             </Table>
              <DeleteUser arrIndex={arrIndex}/>
             <UserDetail arrIndex={arrIndex} />
-            <AddUser/>
+            <AddUser action={action} arrIndex={arrIndex}/>
         </>
     )
 }
