@@ -1,7 +1,6 @@
 import { Sort } from "@material-ui/icons"
 import { NativeSelect, Pagination, TextField } from "@mui/material"
 import { CasesCrud } from "../components/navigationCrud/cases"
-
 export const Cases=()=>{
     return(
         <main className="container-lg">
