@@ -13,7 +13,7 @@ useEffect(
             if(data)return data.customerPage
         }
         fetch().then(data=>{
-            setResponse({code:200,responseContent:data,responseReady:true})
+            setResponse({code:200,responseContent:data,responseReady:true});
         })
         .catch(err=>err)
     },[data,paginationInput]

@@ -3,7 +3,7 @@ import { Index } from './pages/visitor'
 import { Login } from './pages/visitor/Login'
 import { Signup } from './pages/visitor/Signup'
 import { Admin } from './pages/admin'
-import { User } from './pages/user'
+import { Customer } from './pages/user'
 function App() {
 return (
 <>
@@ -14,7 +14,7 @@ return (
           <Route path="/login" element={<Login/>} />
           <Route path="/sign-up" element={<Signup/>} />
           <Route path="/admin" element={<Admin/>} />
-          <Route path="/user" element={<User/>} />
+          <Route path="/user" element={<Customer/>} />
         </Routes>
       </div>
       </Router>

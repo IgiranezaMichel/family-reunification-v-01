@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const CUSTOMER_PAGE = gql`
 query($customerPage:PaginationInput){
-    userPage(customerPage:$customerPage){
+    customerPage(customerPage:$customerPage){
     pageNumber
     pageSize
     size

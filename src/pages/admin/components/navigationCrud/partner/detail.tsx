@@ -16,18 +16,22 @@ export const PartnerDetail=(props:{arrIndex:number})=>{
         }, [data.responseContent, organization, props.arrIndex]
     )
     return(
-        <BootstrapModal size="modal-lg" modalTitle={<div>
-            <CropOriginalOutlined/>{organization.name} Detail
-        </div>} id="detail">
-            <div className="card">
-                <img src="/public/Visitor/Login.png" className="card-img rounded-0"/>
-            </div>
-                <div className="mb-2">
-                    <b>Name </b>{organization.name}
+        <>
+        {data!=undefined&&data.responseContent&&data.responseContent.content.length!=0&&
+            <BootstrapModal size="modal-lg" modalTitle={<div>
+                <CropOriginalOutlined/>{organization.name} Detail
+            </div>} id="detail">
+                <div className="card">
+                    <img src="/public/Visitor/Login.png" className="card-img rounded-0"/>
                 </div>
-                <div className="mb-2"><b>Address </b>{organization.address}</div>
-                <div><b>Description </b>{organization.description}</div>
-                <div><i className="float-end"><b>recoded at  </b>{String(organization.timeStamp).split('T')[0]} {String(organization.timeStamp).split('T')[1]}</i></div>
-        </BootstrapModal>
+                    <div className="mb-2">
+                        <b>Name </b>{organization.name}
+                    </div>
+                    <div className="mb-2"><b>Address </b>{organization.address}</div>
+                    <div><b>Description </b>{organization.description}</div>
+                    <div><i className="float-end"><b>recoded at  </b>{String(organization.timeStamp).split('T')[0]} {String(organization.timeStamp).split('T')[1]}</i></div>
+            </BootstrapModal>
+        }
+        </>
     )
 }

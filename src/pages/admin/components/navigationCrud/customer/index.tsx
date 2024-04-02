@@ -11,6 +11,7 @@ export const CustomerCrud = () => {
     const [arrIndex, setArrIndex] = useState(0)
     const [action,setAction]=useState('');
     const { data } = useCustomerContext();
+    console.log(data)
     const display = <TableBody>
         {data != undefined && data.map(
             (result: any, index: number) => {
@@ -43,6 +44,11 @@ export const CustomerCrud = () => {
                 </TableRow>
             }
         )}
+        <TableRow>
+            <TableCell colSpan={4}>{data!=undefined&&data.length==0&&<div className="bg-body-secondary text-center p-5">
+            -- No data found --
+            </div>}</TableCell>
+        </TableRow>
     </TableBody>
 
     return (

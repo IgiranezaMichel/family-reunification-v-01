@@ -2,7 +2,7 @@ import {ExitToApp, FileCopyRounded, Group, Home, Message, People, Person, Report
 import {useEffect, useState } from "react"
 import { AdminHome } from "../navigations/home";
 import { Partner } from "../navigations/partner";
-import { Users } from "../navigations/customer";
+import { Customers } from "../navigations/customer";
 import { Cases } from "../navigations/cases";
 import { Report } from "../navigations/report";
 import { Chat } from "../navigations/chat";
@@ -93,7 +93,7 @@ export const AdminNavigation = () => {
                 activeNav=='home'?
                 <AdminHome/>
                 :activeNav=='partner'?<Partner/>
-                :activeNav=='users'?<Users/>
+                :activeNav=='users'?<Customers/>
                 :activeNav=='cases'?<Cases/>
                 :activeNav=='report'?<Report/>
                 :activeNav=='chat'?<Chat/>

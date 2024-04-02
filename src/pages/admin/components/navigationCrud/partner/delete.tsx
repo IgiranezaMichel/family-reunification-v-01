@@ -13,7 +13,7 @@ export const DeletePartner=(props:{arrIndex:number,show:string})=>{
     const deleteOrganization=useDeleteOrganization(organization.id);
     useEffect(
         ()=>{
-            if(data.responseContent){
+            if(data.responseContent&&data.responseContent.content.length!=0){
                 setIsFound(true)
                 setOrganization({id:Number(data.responseContent.content[props.arrIndex].id),name:data.responseContent.content[props.arrIndex].name});
             }
@@ -24,7 +24,7 @@ export const DeletePartner=(props:{arrIndex:number,show:string})=>{
    }
     return (
        <>
-       { isFound&&<BootstrapModal id="removePartner" modalTitle={ <Typography className="fw-bold mb-3">
+       { isFound&&data.responseContent.content.length!=0&&<BootstrapModal id="removePartner" modalTitle={ <Typography className="fw-bold mb-3">
         Remove organization
     </Typography>} size="modal-sm">
        

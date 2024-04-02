@@ -1,11 +1,11 @@
 import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSaveUser } from '../../controller/user/mutation';
+import { useSaveCustomer } from '../../controller/customer/mutation';
 import { Gender } from '../../enum/gender';
-import { UserInput } from '../../typedefs/visitorInput/customer';
+import { CustomerInput } from '../../typedefs/visitorInput/customer';
 export const Signup = () => {
-    const [user, setUser] = useState<UserInput>({
+    const [user, setUser] = useState<CustomerInput>({
         country: '',
         dob: '',
         email: '',
@@ -29,7 +29,7 @@ export const Signup = () => {
             reader.readAsDataURL(file);
         }
     }
-    const { saveHandler,response } = useSaveUser(user);
+    const { saveHandler,response } = useSaveCustomer(user);
     const saveUserHandler = () => {
         saveHandler().then(
         ()=>{if(response.responseReady)alert(response.responseContent)}

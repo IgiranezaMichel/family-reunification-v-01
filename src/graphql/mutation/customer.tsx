@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const REGISTER_CUSTOMER=gql`
 mutation($customerInput:CustomerInput){
-    saveUser(customerInput:$customerInput)
+    saveCustomer(customerInput:$customerInput)
 }
 `
 export const DELETE_CUSTOMER=gql`

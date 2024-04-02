@@ -16,14 +16,13 @@ export const PartnerCrud = (props:{ search: string }) => {
 
         },[action,props.search]
     )
-    console.log(data)
     const displayView = <main>
         <><div className="mt-3">
             <Button variant="contained"type="button" data-bs-toggle="modal" onClick={()=>setAction('Add new Partner')}
                                     data-bs-target="#addPartner"><Add /> new </Button>
         </div>
             <div className="row m-auto g-2 col-12 mb-4" >
-                {data.responseContent != undefined && data.responseContent.content.map((data: any, index: number) => {
+                {data.responseContent != undefined &&data.responseContent.content.length!=0&& data.responseContent.content.map((data: any, index: number) => {
                     return <section className="col-sm-3" key={index}>
                         <div className="card text-white">
                             <img className="card-img" src="/Visitor/baby-sitting.png" alt="Title" />
@@ -47,6 +46,11 @@ export const PartnerCrud = (props:{ search: string }) => {
                         </div>
                     </section>
                 })
+                }
+                {
+                    data.responseContent != undefined &&data.responseContent.content.length==0&&<div className="bg-body-secondary p-4 text-center">
+                        -- No data found --
+                    </div>
                 }
             </div>
         </>
