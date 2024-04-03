@@ -4,14 +4,11 @@ import { Save } from "@material-ui/icons"
 import { useSaveCases } from "../../../../../controller/cases/mutation"
 import { useEffect, useState } from "react"
 import { CaseInput } from "../../../../../typedefs/cases"
-import { Toast } from "../../../../../components/toast"
-import { snack } from "../../../../../typedefs/snack"
+import { ToastContainer, toast } from "react-toastify"
 
 export const CreateCase=(props:{action:string})=>{
     const [cases,setCases]=useState<CaseInput>({description:'',title:'',id:0});
     const customerId=1;
-    const [snack,setSnack]=useState<snack>({message:'',open:false});
-    const [open,setOpen]=useState(false);
     const saveCase=useSaveCases(cases,customerId);
     useEffect(
         ()=>{
@@ -19,11 +16,16 @@ export const CreateCase=(props:{action:string})=>{
                 return saveCase;    
             }
             fetch();
-        },[saveCase,snack]
+        },[saveCase]
     )
     const saveCaseHandler=()=>{
         saveCase.saveHandler()
-        .then(()=>alert(saveCase.response.responseContent));
+        .then((data)=>{
+            const resultString=data.data.saveCases as string;
+            const resultCode=resultString.includes('405') as boolean;
+            const content=resultString.substring(resultString.indexOf(',')+1,resultString.lastIndexOf(','));
+            resultCode?toast.error(content):toast.success(content)
+            console.log(data)});
     }
     return <>
     <BootstrapModal size="modal-md"  id="addCase"
@@ -38,6 +40,6 @@ export const CreateCase=(props:{action:string})=>{
             </div>
         </div>
     </BootstrapModal>
-    <Toast horizontal="left" open={open} vertical="bottom" message={snack.message}/>
+    <ToastContainer/>
     </>
 }

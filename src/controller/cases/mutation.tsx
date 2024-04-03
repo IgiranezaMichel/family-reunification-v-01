@@ -6,20 +6,10 @@ import { Response } from "../../typedefs/response";
 
 export const useSaveCases=(caseInput:CaseInput,customerId:number)=>{
     const [save]=useMutation(REGISTER_CASE);
-    const [response,setResponse]=useState<Response>({
-        code:0,responseContent:'',responseReady:false
-    })
     const saveHandler=async()=>{
-        await save({variables:{caseInput:caseInput,customerId:customerId}})
-        .then((data)=>{
-            
-        const resultString=data.data.saveCases as string;
-        const resultCode=resultString.includes('405') as boolean;
-        const content=resultString.substring(resultString.indexOf(',')+1,resultString.lastIndexOf(','));
-        setResponse({code:Number(resultCode?405:200),responseContent:content,responseReady:true});
-        })
+      return  await save({variables:{caseInput:caseInput,customerId:customerId}})
     }
-    return {saveHandler,response}
+    return {saveHandler}
 }
 export const useDeleteCases=(caseId:number)=>{
     const [deleteCase]=useMutation(DELETE_CASE);
