@@ -4,6 +4,7 @@ import { Customer } from './pages/customer'
 import { Index } from './pages/visitor'
 import { Login } from './pages/visitor/Login'
 import { Signup } from './pages/visitor/Signup'
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
 return (
 <>
