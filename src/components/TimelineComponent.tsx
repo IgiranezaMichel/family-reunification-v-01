@@ -20,7 +20,7 @@ export const TimelineComponent:FC<TimelineItem> = (props) => {
                         <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent sx={{ py: '12px', px: 2 }}>
-                        <Typography variant="h6" component="span">
+                        <Typography variant="h6" className="fw-bold" component="span">
                             {props.title}
                         </Typography>
                         <Typography>
