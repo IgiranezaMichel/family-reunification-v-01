@@ -21,8 +21,8 @@ export const PartnerDetail=(props:{arrIndex:number})=>{
             <BootstrapModal size="modal-lg" modalTitle={<div>
                 <CropOriginalOutlined/>{organization.name} Detail
             </div>} id="detail">
-                <div className="card">
-                    <img src="/public/Visitor/Login.png" className="card-img rounded-0"/>
+                <div className="card p-0 rounded-0">
+                    <img src={organization.logo} className="card-img rounded-0"/>
                 </div>
                     <div className="mb-2">
                         <b>Name </b>{organization.name}
