@@ -7,13 +7,12 @@ import { useState } from "react";
 export const useRegisterOrganization=(organizationInput:OrganizationInput)=>{
     const [saveOrganization]=useMutation(REGISTER_ORGANIZATION);
     const [response,setResponse]=useState<Response>({code:0,responseContent:'',responseReady:false});
-    const saveOrganizationHandler=()=>{
-       saveOrganization({variables:{organizationInput:organizationInput}})
+    const saveOrganizationHandler=async()=>{
+      return await saveOrganization({variables:{organizationInput:organizationInput}})
        .then(data=>{
         const result=String(data.data.saveOrganization).split(',');
         console.log(result[0].split(' ')[0].split('<')[1])
         setResponse({code:Number(result[0].split(' ')[0].split('<')[1]),responseContent:result[1],responseReady:true})
-
        })
        .catch(err=>console.log(err))
     }
