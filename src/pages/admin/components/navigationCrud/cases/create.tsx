@@ -5,11 +5,13 @@ import { useSaveCases } from "../../../../../controller/cases/mutation"
 import { useEffect, useState } from "react"
 import { CaseInput } from "../../../../../typedefs/cases"
 import { ToastContainer, toast } from "react-toastify"
+import { useCaseList } from "../../../../../controller/cases/queries"
 
 export const CreateCase=(props:{action:string})=>{
     const [cases,setCases]=useState<CaseInput>({description:'',title:'',id:0});
     const customerId=1;
     const saveCase=useSaveCases(cases,customerId);
+    const {result}=useCaseList();
     useEffect(
         ()=>{
             const fetch=async()=>{
@@ -21,6 +23,7 @@ export const CreateCase=(props:{action:string})=>{
     const saveCaseHandler=()=>{
         saveCase.saveHandler()
         .then((data)=>{
+            result.refetch();
             const resultString=data.data.saveCases as string;
             const resultCode=resultString.includes('405') as boolean;
             const content=resultString.substring(resultString.indexOf(',')+1,resultString.lastIndexOf(','));
