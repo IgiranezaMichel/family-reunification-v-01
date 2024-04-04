@@ -1,7 +1,7 @@
 export type  OrganizationInput={
     id?:number
     name: string
-    logo: string
+    base64Logo: string
     description: string
     address: string
   }
