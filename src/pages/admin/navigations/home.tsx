@@ -2,6 +2,7 @@ import { ArrowDownward, ArrowUpward } from "@material-ui/icons"
 import { GaugeCard } from "../../../components/GuageCard"
 import { BarChatCard } from "../../../components/barcharts"
 import { TimelineComponent } from "../../../components/TimelineComponent"
+import { Example } from "./editor"
 export const AdminHome = () => {
     return (
         <main className="container row">
@@ -31,6 +32,7 @@ export const AdminHome = () => {
                 <BarChatCard title="djgoe" />
             </div>
             <div className="fs-5 fw-bold mt-4">Recent Posts</div>
+            <Example/>
             <TimelineComponent title="Recent">
                 <div>This ...</div>
             </TimelineComponent>
