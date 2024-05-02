@@ -5,6 +5,9 @@ import { useEffect } from "react";
 
 export const useSaveCustomer=(customerInput:CustomerInput)=>{
 const [saveCustomer]=useMutation(REGISTER_CUSTOMER);
+useEffect(
+   ()=>{},[customerInput]
+)
 const saveHandler=async()=>{
    return await saveCustomer({variables:{customerInput:customerInput}});
 }
