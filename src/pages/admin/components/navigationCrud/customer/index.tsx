@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CalendarTodaySharp, Close, Delete, Email, LocationOn, PersonAdd, Phone, PostAddOutlined, Update, Wc } from "@material-ui/icons"
 import { Avatar, Button, Card, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useCustomerContext } from "../../../../../context.tsx/customerContext"
 import { AddUser } from "./createOrUpdate"
 import { DeleteUser } from "./delete"
@@ -12,6 +12,9 @@ export const CustomerCrud = () => {
     const [openAddUser, setAddUser] = useState(false);
     const [action, setSetAction] = useState('');
     const { data } = useCustomerContext();
+    useEffect(
+        ()=>{},[arrIndex,openAddUser,action,data]
+    )
     const display = <TableBody>
         {data != undefined &&data.length!=0&& data.map(
             (result: any, index: number) => {
