@@ -27,6 +27,7 @@ export const DeleteUser=(props:{arrIndex:number})=>{
         deleteHandler()
         .then(data=>{
             const result=data.data.deleteCustomer as string;
+            console.log(result)
             const responseMessage=result.substring(result.indexOf(',',result.lastIndexOf(',')))
             const responseCode=Number(result.substring(result.indexOf('<')+1,result.indexOf(' ')))
             {responseCode!=200?toast.error(responseMessage):toast.success(responseMessage)}
