@@ -1,16 +1,19 @@
 import { Sort } from "@material-ui/icons"
 import { NativeSelect, Pagination} from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { CustomerContext } from "../../../context.tsx/customerContext"
 import { useCustomerPage } from "../../../controller/customer/queries"
 import { PaginationInput } from "../../../typedefs/default/paginationInput"
 import { CustomerCrud } from "../components/navigationCrud/customer"
 export const Customers = () => {
-    const [page, setPage] = useState<PaginationInput>({ pageNumber: 0, pageSize: 10, sort: "firstName" })
+    const [page, setPage] = useState<PaginationInput>({ pageNumber: 0, pageSize: 10, sort: "firstName" });
     const { response, refetch } = useCustomerPage(page);
     const updateData = () => {
         refetch();
     }
+    useEffect(
+        ()=>{},[page.pageNumber,page.pageSize,page.sort]
+    )
     return (
         <>
             {!response.responseContent && <>
