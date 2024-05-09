@@ -5,11 +5,14 @@ import { useEffect, useState } from "react"
 import { BootstrapModal } from "../../../../../components/bootstrapModal"
 import { useCustomerContext } from "../../../../../context.tsx/customerContext"
 import { useDeleteCustomer } from "../../../../../controller/customer/mutation"
+import { IToast, Toast } from "../../../../../components/toast"
 
 export const DeleteUser=(props:{arrIndex:number})=>{
     const {data,updateData}=useCustomerContext();
     const [customer,setCustomer]=useState<any>({});
+    const [toast,setToast]=useState<IToast>({message:'',open:true,responseCode:200})
     const {deleteHandler}=useDeleteCustomer(customer.id)
+
     useEffect(
         ()=>{
             const fetch=async()=>{
@@ -33,6 +36,9 @@ export const DeleteUser=(props:{arrIndex:number})=>{
         <div className="modal-footer">
             <Button onClick={()=>deleteCustomer()}><Delete /></Button>
         </div>
+        <Toast item={toast}>
+        <Button variant="contained" className="" onClick={()=>setToast({...toast,open:false})}>Close</Button>
+        </Toast>
     </BootstrapModal>
     </>
 }
