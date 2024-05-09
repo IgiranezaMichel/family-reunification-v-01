@@ -6,13 +6,11 @@ import { useCustomerContext } from "../../../../../context.tsx/customerContext"
 import { AddUser } from "./createOrUpdate"
 import { DeleteUser } from "./delete"
 import { CustomerDetail } from "./detail"
-import { IToast, Toast } from "../../../../../components/toast"
 
 export const CustomerCrud = () => {
     const [arrIndex, setArrIndex] = useState(0)
     const [action, setAction] = useState('');
     const { data } = useCustomerContext();
-    const [toast,setToast]=useState<IToast>({message:'',open:true,responseCode:200})
     console.log(data)
     const display = <TableBody>
         {data != undefined && data.map(
@@ -77,7 +75,6 @@ export const CustomerCrud = () => {
                     size
                 </div>}
             </Card>
-            <Toast {...toast}></Toast>
             <DeleteUser arrIndex={arrIndex} />
             <CustomerDetail arrIndex={arrIndex} />
             <AddUser action={action} arrIndex={arrIndex} />
