@@ -1,19 +1,25 @@
 import { CheckCircle, Warning } from "@material-ui/icons";
-import { Button, Dialog, Slide, Zoom } from "@mui/material";
-import { FC } from "react";
+import {Dialog, Slide } from "@mui/material";
+import { FC, ReactNode } from "react";
 
 export interface IToast{
     responseCode:number;
     message:string,
-    open:boolean
+    open:boolean,
 }
-export const Toast:FC<IToast>=(props)=>{
+ interface ToastItem{
+item:IToast,
+children:ReactNode
+}
+export const Toast:FC<ToastItem>=(props)=>{
 return(
-    <Dialog TransitionComponent={Slide} open={props.open}>
-        {props.responseCode!=200?<>
+    <Dialog maxWidth='xs' PaperProps={{className:'col-12 p-4'}} TransitionComponent={Slide} open={props.item.open}>
+        {props.item.responseCode!=200?<>
         <Warning/></>:
-        <><CheckCircle className='text-success'/>{props.message}</>}
-        <Button className="">Close</Button>
+        <div className="py-2"><CheckCircle className='text-success fs-1'/>{props.item.message}</div>}
+        <div className="text-center">
+        {props.children}
+        </div>
     </Dialog>
 )
 }
