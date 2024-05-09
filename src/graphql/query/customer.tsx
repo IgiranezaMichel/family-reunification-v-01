@@ -7,6 +7,7 @@ query($customerPage:PaginationInput){
     pageSize
     size
     content{
+      id
       firstName
       lastName
       profilePicture
