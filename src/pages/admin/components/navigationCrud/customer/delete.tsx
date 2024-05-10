@@ -10,8 +10,8 @@ import { IToast, Toast } from "../../../../../components/toast"
 export const DeleteUser=(props:{arrIndex:number})=>{
     const {data,updateData}=useCustomerContext();
     const [customer,setCustomer]=useState<any>({});
-    const [toast,setToast]=useState<IToast>({message:'',open:true,responseCode:200})
-    const {deleteHandler}=useDeleteCustomer(customer.id)
+    const [toast,setToast]=useState<IToast>({message:'',open:false,responseCode:200})
+    const {deleteHandler}=useDeleteCustomer(customer.id);
 
     useEffect(
         ()=>{
@@ -22,11 +22,17 @@ export const DeleteUser=(props:{arrIndex:number})=>{
                 }
             }
             fetch();
-        }
+        },[data, props.arrIndex, toast]
     )
     const deleteCustomer=()=>{
         deleteHandler()
         .then(data=>{
+            const result=data.data.deleteCustomer as string;
+            const responseMessage=result.substring(result.indexOf(',',result.lastIndexOf(',')))
+            const responseCode=Number(result.substring(result.indexOf('<',result.indexOf(' '))))
+            console.log()
+            console.log()
+            setToast({message:responseMessage,open:true,responseCode:responseCode})
             console.log(data);updateData()
         }).catch()
     }
