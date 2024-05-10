@@ -1,12 +1,12 @@
-import { Avatar, Button, FormControl, InputLabel, NativeSelect, TextField, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { BootstrapModal } from "../../../../../components/bootstrapModal";
+import { Avatar, Button, Dialog, FormControl, InputLabel, NativeSelect, TextField, Typography } from "@mui/material";
+import { ReactNode, useEffect, useState } from "react";
 import { useCustomerContext } from "../../../../../context.tsx/customerContext";
 import { Gender } from "../../../../../enum/gender";
 import { CustomerInput } from "../../../../../typedefs/visitorInput/customer";
 import { useSaveCustomer } from "../../../../../controller/customer/mutation";
+import { IToast, Toast } from "../../../../../components/toast";
 
-export const AddUser=(props:{arrIndex:number,action:string})=>{
+export const AddUser=(props:{arrIndex:number,action:string,open:boolean,children:ReactNode})=>{
     const [customer, setCustomer] = useState<CustomerInput>({
         firstName: '',
         lastName: '',
@@ -21,12 +21,22 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
         password: '',
         address: ''
     });
+    const [toast,setToast]=useState<IToast>({message:'',open:false,responseCode:200})
     const {saveHandler}=useSaveCustomer(customer);
+    const {data,updateData}=useCustomerContext();
     const saveCustomerHandler=()=>{
-        saveHandler().then(data=>console.log(data))
+        saveHandler().then(data=>{
+           const result=data.data.saveCustomer as string;
+           const responseData=Number(result.substring(result.indexOf('<')+1,result.indexOf(' ')))
+           console.log(result)
+        //    const responseCode=Number(result.substring(result.indexOf('<'),result.lastIndexOf(' ')));
+        //    console.log(responseCode)
+           setToast({message:responseData+'',open:true,responseCode:responseData});
+           updateData();
+        })
         .catch(err=>console.log(err))
 ;    }
-    const {data}=useCustomerContext();
+
     useEffect(
         ()=>{
             const fetch=()=>{
@@ -64,10 +74,11 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
         }
     }
     return (
-        <BootstrapModal id="add-newUser" bg="" size="modal-lg">
+        <Dialog open={props.open}>
         <Typography className="row container m-auto">
+        <div className="col-12 p-2"> {props.children}</div>
             <div className="mt-1 mb-5">
-                <Avatar className="m-auto" />
+                <Avatar className="m-auto" src={customer.base64ProfilePicture.length!=0?customer.base64ProfilePicture:''}/>
                 <h5 className="text-center">{props.action}</h5>
             </div>
             <section className="col-sm-6">
@@ -127,6 +138,9 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
                 <Button variant="outlined" onClick={()=>saveCustomerHandler()} className="fw-bold">save</Button>
             </div>
         </Typography>
-    </BootstrapModal>
+        <Toast item={toast}>
+            <Button onClick={()=>setToast({...toast,open:false})}>Close</Button>
+        </Toast>
+    </Dialog>
     )
 }
