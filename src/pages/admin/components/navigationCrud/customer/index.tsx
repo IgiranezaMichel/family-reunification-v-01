@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CalendarTodaySharp, Delete, Email, LocationOn, PersonAdd, Phone, PostAddOutlined, Update, Wc } from "@material-ui/icons"
+import { CalendarTodaySharp, Close, Delete, Email, LocationOn, PersonAdd, Phone, PostAddOutlined, Update, Wc } from "@material-ui/icons"
 import { Avatar, Button, Card, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import { useState } from "react"
 import { useCustomerContext } from "../../../../../context.tsx/customerContext"
@@ -9,11 +9,11 @@ import { CustomerDetail } from "./detail"
 
 export const CustomerCrud = () => {
     const [arrIndex, setArrIndex] = useState(0)
-    const [action, setAction] = useState('');
+    const [openAddUser, setAddUser] = useState(false);
+    const [action, setSetAction] = useState('');
     const { data } = useCustomerContext();
-    console.log(data)
     const display = <TableBody>
-        {data != undefined && data.map(
+        {data != undefined &&data.length!=0&& data.map(
             (result: any, index: number) => {
                 return <TableRow key={index} className="border border-4 border-white">
                     <TableCell className="col-2 rounded-0">
@@ -40,8 +40,8 @@ export const CustomerCrud = () => {
                         <Delete data-bs-toggle="modal" className="bg-danger text-white fs-2 rounded p-1 mx-2"
                             data-bs-target="#delete" />
                         <Update className="bg-primary text-white fs-2 rounded p-1 mx-2"
-                            data-bs-toggle="modal" onClick={() => { setAction('Update User Information'); setArrIndex(index) }}
-                            data-bs-target="#add-newUser" />
+                             onClick={() => { setAddUser(true); setArrIndex(index) }}
+                             />
                     </TableCell>
                 </TableRow>
             }
@@ -55,8 +55,9 @@ export const CustomerCrud = () => {
 
     return (
         <>
-            <Button className="mt-3" data-bs-toggle="modal"
-                data-bs-target="#add-newUser" onClick={() => setAction('addUser')} variant="contained"><PersonAdd /></Button>
+            <Button className="mt-3"  onClick={() => {setAddUser(true);setSetAction('addNewUser')}}variant="contained">
+                <PersonAdd />
+            </Button>
             <Card elevation={4} className="p-0 mt-2">
                 <Table className="border table-responsive">
                     <TableHead>
@@ -75,9 +76,14 @@ export const CustomerCrud = () => {
                     size
                 </div>}
             </Card>
+            <AddUser action={action} open={openAddUser} arrIndex={arrIndex}>
+                <Close className="text-black float-end" onClick={()=>setAddUser(false)}/>
+            </AddUser>
+            {data!=undefined&&data.length!=0&&
+            <>
             <DeleteUser arrIndex={arrIndex} />
             <CustomerDetail arrIndex={arrIndex} />
-            <AddUser action={action} arrIndex={arrIndex} />
+            </>}
         </>
     )
 }
