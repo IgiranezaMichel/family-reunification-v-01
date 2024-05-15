@@ -13,7 +13,7 @@ query($customerPage:PaginationInput){
       email
       phoneNumber
       gender
-      dob
+      userDob
       address
       country
       nativeCountry
