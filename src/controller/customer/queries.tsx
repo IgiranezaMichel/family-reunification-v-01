@@ -10,7 +10,10 @@ const {refetch,data}=useQuery(CUSTOMER_PAGE,{variables:{customerPage:paginationI
 useEffect(
     ()=>{
         const fetch=async()=>{
-            if(data)return data.customerPage
+            if(data){
+                console.log('Running ....')
+                console.log(data)
+                return data.customerPage}
         }
         fetch().then(data=>{
             setResponse({code:200,responseContent:data,responseReady:true});
