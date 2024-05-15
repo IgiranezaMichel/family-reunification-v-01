@@ -4,6 +4,7 @@ import { BootstrapModal } from "../../../../../components/bootstrapModal";
 import { useCustomerContext } from "../../../../../context.tsx/customerContext";
 import { Gender } from "../../../../../enum/gender";
 import { CustomerInput } from "../../../../../typedefs/visitorInput/customer";
+import { useSaveCustomer } from "../../../../../controller/customer/mutation";
 
 export const AddUser=(props:{arrIndex:number,action:string})=>{
     const [customer, setCustomer] = useState<CustomerInput>({
@@ -20,6 +21,11 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
         password: '',
         address: ''
     });
+    const {saveHandler}=useSaveCustomer(customer);
+    const saveCustomerHandler=()=>{
+        saveHandler().then(data=>console.log(data))
+        .catch(err=>console.log(err))
+;    }
     const {data}=useCustomerContext();
     useEffect(
         ()=>{
@@ -47,7 +53,16 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
             fetch();
         },[data, props.action, props.arrIndex]
     )
-    console.log(props.arrIndex)
+    const imageHandler=(e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = () => {
+                setCustomer({ ...customer, base64ProfilePicture: reader.result as string })
+            };
+            reader.readAsDataURL(file);
+        }
+    }
     return (
         <BootstrapModal id="add-newUser" bg="" size="modal-lg">
         <Typography className="row container m-auto">
@@ -55,7 +70,6 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
                 <Avatar className="m-auto" />
                 <h5 className="text-center">{props.action}</h5>
             </div>
-
             <section className="col-sm-6">
                 <TextField value={customer.firstName} onChange={(e) => setCustomer({ ...customer, firstName: e.target.value })} variant="standard" className="form-control mb-3" label='First Name' />
                 <TextField value={customer.lastName} onChange={(e) => setCustomer({ ...customer, lastName: e.target.value })} variant="standard" className="form-control mb-3" label='First Name' />
@@ -72,7 +86,7 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
                     value={customer.dob} onChange={(e) => setCustomer({ ...customer, dob: e.target.value })}
                     className="form-control mb-3" />
                 <label htmlFor="">Profile picture</label>
-                <TextField variant="standard" type="file" className="form-control mb-3" />
+                <TextField variant="standard" type="file" onChange={imageHandler} className="form-control mb-3" />
                 <TextField variant="standard"
                     value={customer.phoneNumber} onChange={(e) => setCustomer({ ...customer, phoneNumber: e.target.value })}
                     className="form-control mb-3"
@@ -100,7 +114,7 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
                     value={customer.email} onChange={(e) => setCustomer({ ...customer, email: e.target.value })}
                     className="form-control mb-4" label='Email' />
                 <TextField variant="standard"
-                    value={customer.email} onChange={(e) => setCustomer({ ...customer, address: e.target.value })}
+                    value={customer.address} onChange={(e) => setCustomer({ ...customer, address: e.target.value })}
                     className="form-control mb-4" label='Address' />
                 <TextField variant="standard"
                     value={customer.username} onChange={(e) => setCustomer({ ...customer, username: e.target.value })}
@@ -110,7 +124,7 @@ export const AddUser=(props:{arrIndex:number,action:string})=>{
                     className="form-control mb-3" label='Password' />
             </section>
             <div className="modal-footer">
-                <Button variant="outlined" className="fw-bold">save</Button>
+                <Button variant="outlined" onClick={()=>saveCustomerHandler()} className="fw-bold">save</Button>
             </div>
         </Typography>
     </BootstrapModal>
