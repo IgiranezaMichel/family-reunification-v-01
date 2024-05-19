@@ -58,7 +58,7 @@ export const CustomerCrud = () => {
             <Button className="mt-3"  onClick={() => {setAddUser(true);setSetAction('addNewUser')}}variant="contained">
                 <PersonAdd />
             </Button>
-            <Card elevation={4} className="p-0 mt-2">
+            <Card elevation={4} className="p-0 mt-2 mb-3">
                 <Table className="border table-responsive">
                     <TableHead>
                         <TableRow className="bg-body-secondary ">
@@ -70,11 +70,6 @@ export const CustomerCrud = () => {
                     </TableHead>
                     {display}
                 </Table>
-                {data != undefined && data.length != 0 && <div className="modal-footer">
-                    {data.pageNumber} page out of {data.pageSize}
-
-                    size
-                </div>}
             </Card>
             <AddUser action={action} open={openAddUser} arrIndex={arrIndex}>
                 <Close className="text-black float-end" onClick={()=>setAddUser(false)}/>
