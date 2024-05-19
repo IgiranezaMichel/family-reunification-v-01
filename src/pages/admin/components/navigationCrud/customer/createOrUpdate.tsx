@@ -21,18 +21,23 @@ export const AddUser=(props:{arrIndex:number,action:string,open:boolean,children
         password: '',
         address: ''
     });
-    const [toast,setToast]=useState<IToast>({message:'',open:false,responseCode:200})
+    const [message,setMessage]=useState('');
+    const [toast,setToast]=useState<IToast>({message:message,open:false,responseCode:200});
+    useEffect(
+        ()=>{
+        setToast({...toast,message:message});
+        },[toast.message, message, toast]
+    )
     const {saveHandler}=useSaveCustomer(customer);
     const {data,updateData}=useCustomerContext();
     const saveCustomerHandler=()=>{
         saveHandler().then(data=>{
            const result=data.data.saveCustomer as string;
-           const responseData=Number(result.substring(result.indexOf('<')+1,result.indexOf(' ')))
-           console.log(result)
-        //    const responseCode=Number(result.substring(result.indexOf('<'),result.lastIndexOf(' ')));
-        //    console.log(responseCode)
-           setToast({message:responseData+'',open:true,responseCode:responseData});
+           const responseCode=Number(result.substring(result.indexOf('<')+1,result.indexOf(' ')))
+           setMessage(result.substring(result.indexOf(',')+1,result.lastIndexOf(',')));
+           setToast({...toast,message:message,responseCode:responseCode});
            updateData();
+           setToast({...toast,open:true});
         })
         .catch(err=>console.log(err))
 ;    }
