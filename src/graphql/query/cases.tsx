@@ -13,7 +13,7 @@ query{
       profilePicture
       email
       phoneNumber
-      dob
+      userDob
       address
       country 
       role
