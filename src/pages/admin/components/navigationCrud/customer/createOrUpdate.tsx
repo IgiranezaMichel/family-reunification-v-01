@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Button, Dialog, FormControl, InputLabel, NativeSelect, TextField, Typography } from "@mui/material";
 import { ReactNode, useEffect, useState } from "react";
 import { useCustomerContext } from "../../../../../context.tsx/customerContext";
@@ -26,7 +27,7 @@ export const AddUser = (props: { arrIndex: number, action: string, open: boolean
     useEffect(
         () => {
             setToast({ ...toast, message: message });
-        }, [toast.message, message, toast]
+        }, [message,customer,props]
     )
     const { saveHandler } = useSaveCustomer(customer);
     const { data, updateData } = useCustomerContext();
