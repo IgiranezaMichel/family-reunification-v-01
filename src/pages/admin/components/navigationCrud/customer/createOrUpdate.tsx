@@ -83,7 +83,7 @@ export const AddUser = (props: { arrIndex: number, action: string, open: boolean
     return (
         <Dialog open={props.open}>
             <Typography className="row container m-auto">
-                <div className="col-12 p-2"> {props.children}</div>
+                <div className="col-12 p-2 sticky-top bg-white"> {props.children}</div>
                 <div className="mt-1 mb-5">
                     <Avatar className="m-auto" src={customer.base64ProfilePicture.length != 0 ? customer.base64ProfilePicture : ''} />
                     <h5 className="text-center">{props.action}</h5>
