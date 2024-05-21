@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSaveCustomer } from '../../controller/customer/mutation';
 import { Gender } from '../../enum/gender';
 import { CustomerInput } from '../../typedefs/visitorInput/customer';
+import { countries } from '../../object';
 export const Signup = () => {
     const [user, setUser] = useState<CustomerInput>({
         country: '',
@@ -29,11 +30,11 @@ export const Signup = () => {
             reader.readAsDataURL(file);
         }
     }
-    const { saveHandler,response } = useSaveCustomer(user);
+    const { saveHandler} = useSaveCustomer(user);
     const saveUserHandler = () => {
         saveHandler().then(
-        ()=>{if(response.responseReady)alert(response.responseContent)}
-        );
+        (data)=>{alert(data.data.saveCustomer)}
+        ).catch((err)=>console.log(err));
     }
     return (
         <>
@@ -89,18 +90,16 @@ export const Signup = () => {
                         <div className="col-sm-4">
                             <FormControl fullWidth className="mb-3">
                                 <InputLabel variant='standard'>Country</InputLabel>
-                                <NativeSelect className='w-100 border-bottom border-3'>
-                                    <option value={'Rwanda'}>Rwanda</option>
-                                    <option value={'Uganda'}>Uganda</option>
-                                    <option value={'Burundi'}>Burundi</option>
+                                <NativeSelect componentsProps={{input:{color:'blue'}}} className='w-100 border-bottom border-3'>
+                                    <option value={''}>select country</option>
+                                     {countries.map(data=><option key={data} value={data}>{data}</option>)}
                                 </NativeSelect>
                             </FormControl>
                             <FormControl fullWidth className="mb-4">
                                 <InputLabel variant='standard'>Native Country</InputLabel>
                                 <NativeSelect onChange={(e) => setUser({ ...user, nativeCountry: e.target.value })} className='w-100 border-bottom border-3'>
-                                    <option value={'Rwanda'}>Rwanda</option>
-                                    <option value={'Uganda'}>Uganda</option>
-                                    <option value={'Burundi'}>Burundi</option>
+                                    <option value={''}>select country</option>
+                                    {countries.map(data=><option key={data} value={data}>{data}</option>)}
                                 </NativeSelect>
                             </FormControl>
                             <div className="mb-3">
