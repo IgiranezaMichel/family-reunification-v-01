@@ -58,7 +58,7 @@ export const CustomerCrud = () => {
 
     return (
         <>
-            <Button className="mt-3"  onClick={() => {setAddUser(true);setSetAction('addNewUser')}}variant="contained">
+            <Button className="mt-3"  onClick={() => {setAddUser(true);setSetAction('add New User')}}variant="contained">
                 <PersonAdd />
             </Button>
             <Card elevation={4} className="p-0 mt-2 mb-3">
