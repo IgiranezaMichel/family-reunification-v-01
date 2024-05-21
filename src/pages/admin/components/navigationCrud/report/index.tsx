@@ -5,16 +5,17 @@ import { TabPanel as BaseTabPanel } from '@mui/base/TabPanel';
 import { buttonClasses } from '@mui/base/Button';
 import { Tab as BaseTab, tabClasses } from '@mui/base/Tab';
 import { blue } from '@mui/material/colors';
+import { MissedPeople } from './missedPeople';
 export const ReportCrud=()=>{
     return(
         <>
        <Tabs defaultValue={1}>
-      <TabsList className='mt-3'>
-        <Tab value={1}>One</Tab>
-        <Tab value={2}>Two</Tab>
-        <Tab value={3}>Three</Tab>
+      <TabsList className='mt-3' variant="scrollable">
+        <Tab value={1}>Recent  missed people report</Tab>
+        <Tab value={2}>Recent Found report</Tab>
+        <Tab value={3}>Recent Found report</Tab>
       </TabsList>
-      <TabPanel value={1}>First page</TabPanel>
+      <TabPanel value={1}><MissedPeople/></TabPanel>
       <TabPanel value={2}>Second page</TabPanel>
       <TabPanel value={3}>Third page</TabPanel>
     </Tabs>
@@ -58,7 +59,6 @@ const Tab = styled(BaseTab)`
 const TabPanel = styled(BaseTabPanel)`
   width: 100%;
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
 `;
 
 const TabsList = styled(BaseTabsList)(
