@@ -1,4 +1,4 @@
-import { Ballot, Delete, Remove } from "@material-ui/icons"
+import { Ballot, Delete } from "@material-ui/icons"
 import { Card, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 
 export const DisplayReport=()=>{
