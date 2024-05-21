@@ -9,7 +9,7 @@ import { useCaseList } from "../../../../../controller/cases/queries"
 
 export const CreateCase=(props:{action:string})=>{
     const [cases,setCases]=useState<CaseInput>({description:'',title:'',id:0});
-    const customerId=1;
+    const customerId=216;
     const saveCase=useSaveCases(cases,customerId);
     const {result}=useCaseList();
     useEffect(
