@@ -3,24 +3,28 @@ import { Button, FormControl, IconButton, ImageList, ImageListItem, ImageListIte
 import JoditEditor from 'jodit-react';
 import { useEffect, useState } from 'react';
 import { Gender } from '../../../../../../enum/gender';
-import { ClaimLostPersonHavingNoAccount } from '../../../../../../typedefs/claimLostPerson';
 import { useCaseList } from '../../../../../../controller/cases/queries';
 import { Close } from '@material-ui/icons';
 import { ProgressBar } from '../../../../../../components/ProgressBar';
+import { LostDTO } from '../../../../../../typedefs/visitorInput/lost';
 export const ClaimUserHasNoAccount = () => {
-    const [user, setUser] = useState<ClaimLostPersonHavingNoAccount>({
-        country: '',
-        dob: '',
-        email: '',
-        firstName: '',
-        lastName: '',
-        nativeCountry: '',
-        phoneNumber: '',
-        password: '',
-        base64ProfilePicture: '',
-        username: '',
-        address: '',
-        gender: Gender.MALE
+    const [lost, setLost] = useState<LostDTO>({
+      id: '',
+      name: '',
+      gender: '',
+      address: '',
+      phoneNumber: '',
+      currentCountry: '',
+      nativeCountry: '',
+      base64Profile: '',
+      dob: '',
+      countryOfLost: '',
+      expectedAddress: '',
+      relationShip: '',
+      hasFound: false,
+      customerId: 0,
+      caseId: 0,
+      description: ''
     });
     const {response}=useCaseList();
     const [files,setFiles]=useState<any>([]);
@@ -52,7 +56,7 @@ export const ClaimUserHasNoAccount = () => {
 
   const displayFile=<ImageList className="container-md m-auto border p-1 rounded-0">
   <ImageListItem key="Subheader" cols={2}>
-    <ListSubheader component="div">User Documents </ListSubheader>
+    <ListSubheader component="div">lost Documents </ListSubheader>
   </ImageListItem>
   {files.map((item:any,index:number) => (
     <ImageListItem key={index}>
@@ -84,14 +88,13 @@ export const ClaimUserHasNoAccount = () => {
           </div>}
            {response.responseReady&&<><div className="d-flex d-flex m-auto card justify-content-center align-items-center rounded-0 mt-3" style={{ backgroundColor: 'rgb(255,255,255,.9)' }}>
           <div className="col-12 row">
-            {user.base64ProfilePicture != '' && <div className="col-12">
+            {lost.base64Profile != '' && <div className="col-12">
               <div className="card col-4 m-auto">
-                <img src={user.base64ProfilePicture} className='card-img' />
+                <img src={lost.base64Profile} className='card-img' />
               </div>
             </div>}
             <div className="col-sm-4">
-              <TextField type="text" value={user.firstName} onChange={(e) => setUser({ ...user, firstName: e.target.value })} variant='standard' className='w-100 border-bottom border-3 mb-3' label='first Name' />
-              <TextField type="text" value={user.lastName} onChange={(e) => setUser({ ...user, lastName: e.target.value })} variant='standard' className='w-100 border-bottom border-3 mb-3' label='Last name' />
+              <TextField type="text" value={lost.name} onChange={(e) => setLost({ ...lost, name: e.target.value })} variant='standard' className='w-100 border-bottom border-3 mb-3' label='first Name' />
               <FormControl fullWidth className="mb-3">
                 <InputLabel variant='standard'>Gender</InputLabel>
                 <NativeSelect className='w-100 border-bottom border-3'>
@@ -103,9 +106,9 @@ export const ClaimUserHasNoAccount = () => {
             </div>
             {/*  */}
             <div className="col-sm-4">
-              <TextField type="text" value={user.address} onChange={(e) => setUser({ ...user, address: e.target.value })} className='w-100 border-bottom border-3 mb-3' variant='standard' label='Address' />
-              <TextField type="text" value={user.phoneNumber} onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })} className="w-100 border-bottom border-0 border-white border-3 mb-3" variant='standard' label='Phone Number' />
-              <label htmlFor="">Add user Profiles</label>
+              <TextField type="text" value={lost.address} onChange={(e) => setLost({ ...lost, address: e.target.value })} className='w-100 border-bottom border-3 mb-3' variant='standard' label='Address' />
+              <TextField type="text" value={lost.phoneNumber} onChange={(e) => setLost({ ...lost, phoneNumber: e.target.value })} className="w-100 border-bottom border-0 border-white border-3 mb-3" variant='standard' label='Phone Number' />
+              <label htmlFor="">Add lost Profiles</label>
               <input type="file" onChange={handleFileChange} multiple className="w-100 border-bottom border-0 border-white border-3 mb-4" />
             </div>
             {/*  */}
@@ -120,14 +123,14 @@ export const ClaimUserHasNoAccount = () => {
               </FormControl>
               <FormControl fullWidth className="mb-2">
                 <InputLabel variant='standard'>Native Country</InputLabel>
-                <NativeSelect onChange={(e) => setUser({ ...user, nativeCountry: e.target.value })} className='w-100 border-bottom border-3'>
+                <NativeSelect onChange={(e) => setLost({ ...lost, nativeCountry: e.target.value })} className='w-100 border-bottom border-3'>
                   <option value={'Rwanda'}>Rwanda</option>
                   <option value={'Uganda'}>Uganda</option>
                   <option value={'Burundi'}>Burundi</option>
                 </NativeSelect>
               </FormControl>
               <span className="fw-bolder">Date of birth</span>
-              <TextField type="date" value={user.dob} onChange={(e) => setUser({ ...user, dob: e.target.value })} className='w-100 border-bottom border-3 mb-3' variant='standard' />
+              <TextField type="date" value={lost.dob} onChange={(e) => setLost({ ...lost, dob: e.target.value })} className='w-100 border-bottom border-3 mb-3' variant='standard' />
             </div>
       
             <div className='col-sm-6'>
@@ -142,7 +145,7 @@ export const ClaimUserHasNoAccount = () => {
             </FormControl>
            </div>
            <div className='col-sm-6'>
-           <TextField label='Expected Place of lost' value={user.dob} onChange={(e) => setUser({ ...user, dob: e.target.value })} className='w-100 border-bottom border-3 mb-3' variant='standard' />
+           <TextField label='Expected Place of lost' value={lost.dob} onChange={(e) => setLost({ ...lost, dob: e.target.value })} className='w-100 border-bottom border-3 mb-3' variant='standard' />
            </div>
  
           </div>
