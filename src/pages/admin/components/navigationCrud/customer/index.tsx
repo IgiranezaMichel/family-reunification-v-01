@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CalendarTodaySharp, Close, Delete, Email, LocationOn, PersonAdd, Phone, PostAddOutlined, Update, Wc } from "@material-ui/icons"
+import { CalendarTodaySharp, Close, Delete, Email, LocationOn, PersonAdd, Phone, PostAddOutlined, Wc } from "@material-ui/icons"
 import { Avatar, Button, Card, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useCustomerContext } from "../../../../../context.tsx/customerContext"
@@ -42,9 +42,6 @@ export const CustomerCrud = () => {
                             className="bg-dark text-white fs-2 rounded p-1 mx-2" />
                         <Delete data-bs-toggle="modal" className="bg-danger text-white fs-2 rounded p-1 mx-2"
                             data-bs-target="#delete" />
-                        <Update className="bg-primary text-white fs-2 rounded p-1 mx-2"
-                             onClick={() => { setAddUser(true); setArrIndex(index) }}
-                             />
                     </TableCell>
                 </TableRow>
             }
