@@ -23,7 +23,7 @@ export const PartnerCrud = (props:{ search: string }) => {
         </div>
             <div className="row m-auto g-2 col-12 mb-4" >
                 {data.responseContent != undefined &&data.responseContent.content.length!=0&& data.responseContent.content.map((data: any, index: number) => {
-                    return <section className="col-sm-3" key={index}>
+                    return <section className="col-md-4" key={index}>
                         <div className="card text-white rounded-0 border border-primary">
                             <img className="rounded-0 m-auto"  height={100} src={data.logo} alt="Title" />
                             <span className="card-title text-dark h6">{data.name}</span>
