@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FormControl, IconButton, ImageList, ImageListItem, ImageListItemBar, InputLabel, ListSubheader, NativeSelect, TextField } from '@mui/material';
+import { Button, FormControl, IconButton, ImageList, ImageListItem, ImageListItemBar, InputLabel, ListSubheader, NativeSelect, Stepper, TextField } from '@mui/material';
 import JoditEditor from 'jodit-react';
 import { useEffect, useState } from 'react';
 import { Gender } from '../../../../../../enum/gender';
@@ -49,6 +49,7 @@ export const ClaimUserHasNoAccount = () => {
       reader.onerror = (error) => reject(error);
     });
   };
+
   const displayFile=<ImageList className="container-md m-auto border p-1 rounded-0">
   <ImageListItem key="Subheader" cols={2}>
     <ListSubheader component="div">User Documents </ListSubheader>
@@ -77,6 +78,7 @@ export const ClaimUserHasNoAccount = () => {
   </ImageList>
     return (
         <>
+        
         {!response.responseReady&&<div className='text-center'>
           <ProgressBar/>
           </div>}
@@ -127,9 +129,8 @@ export const ClaimUserHasNoAccount = () => {
               <span className="fw-bolder">Date of birth</span>
               <TextField type="date" value={user.dob} onChange={(e) => setUser({ ...user, dob: e.target.value })} className='w-100 border-bottom border-3 mb-3' variant='standard' />
             </div>
-          </div>
-        </div><div>
-            {files.length != 0 && displayFile}
+      
+            <div className='col-sm-6'>
             <FormControl fullWidth className="mt-3">
               <InputLabel variant='standard'>Select case</InputLabel>
               <NativeSelect className='w-100 border-bottom border-3'>
@@ -139,8 +140,20 @@ export const ClaimUserHasNoAccount = () => {
               })}
               </NativeSelect>
             </FormControl>
-          </div><div className='mb-1 mt-3'>Description</div><JoditEditor value=''>
+           </div>
+           <div className='col-sm-6'>
+           <TextField label='Expected Place of lost' value={user.dob} onChange={(e) => setUser({ ...user, dob: e.target.value })} className='w-100 border-bottom border-3 mb-3' variant='standard' />
+           </div>
+ 
+          </div>
+          {files.length != 0 && displayFile}
+          </div><div className='mb-1'>Description</div><JoditEditor value=''>
           </JoditEditor></>}
+          <div className="modal-footer">
+            <Button variant='contained'> 
+              Add Post
+            </Button>
+          </div>
         </>
     )
 }
