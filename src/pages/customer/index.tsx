@@ -6,7 +6,6 @@ import { userUrl } from "../../url/userUrl"
 import { Chat } from "./navigation/chat"
 import { Claim } from "./navigation/claim"
 import { MyFamily } from "./navigation/family"
-import { Location } from "./navigation/location"
 
 export const Customer = () => {
     const [url, setUrl] = useState('claims');
@@ -78,11 +77,10 @@ export const Customer = () => {
                     <Divider  className="border border-2"/>
                     {
                         url == 'claims' ? <Claim /> :
-                            url == 'location' ? <Location /> :
                                 url == 'family' ? <MyFamily /> :
                                     url == 'chat' ? <Chat /> :
                                         url == 'settings' ? <Setting /> :
-                                            url == 'logout' ? <Location /> :   ''
+                                            url == 'logout' ? <Setting /> :   ''
                     }
                 </section>
             </div>
