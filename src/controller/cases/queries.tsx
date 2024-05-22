@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useQuery } from "@apollo/client"
 import { LIST_OF_CASE } from "../../graphql/query/cases"
 import { useEffect, useState } from "react";
@@ -19,7 +20,6 @@ export const useCaseList = () => {
     };
 
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result]);
 
   return { response, result };
