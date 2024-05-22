@@ -1,43 +1,54 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, FormControl, IconButton, ImageList, ImageListItem, ImageListItemBar, InputLabel, ListSubheader, NativeSelect, Stepper, TextField } from '@mui/material';
+import { Button, Grid, IconButton, ImageList, ImageListItem, ImageListItemBar, ListSubheader, NativeSelect, TextField, styled } from '@mui/material';
 import JoditEditor from 'jodit-react';
 import { useEffect, useState } from 'react';
-import { Gender } from '../../../../../../enum/gender';
 import { useCaseList } from '../../../../../../controller/cases/queries';
-import { Close } from '@material-ui/icons';
+import { Close, CloudUpload } from '@material-ui/icons';
 import { ProgressBar } from '../../../../../../components/ProgressBar';
 import { LostDTO } from '../../../../../../typedefs/visitorInput/lost';
+import { Item } from '../../../../../../object/item';
+import { countries } from '../../../../../../object';
 export const ClaimUserHasNoAccount = () => {
-    const [lost, setLost] = useState<LostDTO>({
-      id: '',
-      name: '',
-      gender: '',
-      address: '',
-      phoneNumber: '',
-      currentCountry: '',
-      nativeCountry: '',
-      base64Profile: '',
-      dob: '',
-      countryOfLost: '',
-      expectedAddress: '',
-      relationShip: '',
-      hasFound: false,
-      customerId: 0,
-      caseId: 0,
-      description: ''
-    });
-    const {response}=useCaseList();
-    const [files,setFiles]=useState<any>([]);
-    useEffect(() => {
-      }, [files]);
-    const handleFileChange = (event:any) => {
-        const fileList = event.target.files;
-        const filesArray = Array.from(fileList);
-        Promise.all(filesArray.map(file => readFileData(file)))
-          .then(base64Array =>{setFiles(base64Array)});
-      };
-    
-  const readFileData = (file:any) => {
+  const [lost, setLost] = useState<LostDTO>({
+    id: '',
+    name: '',
+    gender: '',
+    address: '',
+    phoneNumber: '',
+    currentCountry: '',
+    nativeCountry: '',
+    base64Profile: '',
+    dob: '',
+    countryOfLost: '',
+    expectedAddress: '',
+    relationShip: '',
+    hasFound: false,
+    customerId: 0,
+    caseId: 0,
+    description: ''
+  });
+  const { response,result } = useCaseList();
+  const [files, setFiles] = useState<any>([]);
+  useEffect(() => {
+  }, [files]);
+  const handleFileChange = (event: any) => {
+    const fileList = event.target.files;
+    const filesArray = Array.from(fileList);
+    Promise.all(filesArray.map(file => readFileData(file)))
+      .then(base64Array => { setFiles(base64Array) });
+  };
+  const VisuallyHiddenInput = styled('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 1,
+    overflow: 'hidden',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+  });
+  const readFileData = (file: any) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -54,109 +65,105 @@ export const ClaimUserHasNoAccount = () => {
     });
   };
 
-  const displayFile=<ImageList className="container-md m-auto border p-1 rounded-0">
-  <ImageListItem key="Subheader" cols={2}>
-    <ListSubheader component="div">lost Documents </ListSubheader>
-  </ImageListItem>
-  {files.map((item:any,index:number) => (
-    <ImageListItem key={index}>
-      <img
-        srcSet={item}
-        src={item.base64Data}
-        loading="lazy"
-      />
-      <ImageListItemBar
-        title={item.fileName}
-        subtitle={item.fileExtension}
-        actionIcon={
-          <IconButton
-            sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-            onClick={()=>{delete files[index]}}
-          >
-              <Close/>
-          </IconButton>
-        }
-      />
+  const displayFile = <ImageList className="container-md m-auto border p-1 rounded-0">
+    <ImageListItem key="Subheader" cols={2}>
+      <ListSubheader component="div">lost Documents </ListSubheader>
     </ImageListItem>
-  ))}
+    {files.map((item: any, index: number) => (
+      <ImageListItem key={index}>
+        <img
+          srcSet={item}
+          src={item.base64Data}
+          loading="lazy"
+        />
+        <ImageListItemBar
+          title={item.fileName}
+          subtitle={item.fileExtension}
+          actionIcon={
+            <IconButton
+              sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+              onClick={() => { delete files[index] }}
+            >
+              <Close />
+            </IconButton>
+          }
+        />
+      </ImageListItem>
+    ))}
   </ImageList>
-    return (
-        <>
-        
-        {!response.responseReady&&<div className='text-center'>
-          <ProgressBar/>
-          </div>}
-           {response.responseReady&&<><div className="d-flex d-flex m-auto card justify-content-center align-items-center rounded-0 mt-3" style={{ backgroundColor: 'rgb(255,255,255,.9)' }}>
-          <div className="col-12 row">
-            {lost.base64Profile != '' && <div className="col-12">
-              <div className="card col-4 m-auto">
-                <img src={lost.base64Profile} className='card-img' />
-              </div>
-            </div>}
-            <div className="col-sm-4">
-              <TextField type="text" value={lost.name} onChange={(e) => setLost({ ...lost, name: e.target.value })} variant='standard' className='w-100 border-bottom border-3 mb-3' label='first Name' />
-              <FormControl fullWidth className="mb-3">
-                <InputLabel variant='standard'>Gender</InputLabel>
-                <NativeSelect className='w-100 border-bottom border-3'>
-                  <option value={Gender.MALE}>Male</option>
-                  <option value={Gender.MALE}>Female</option>
-                </NativeSelect>
-              </FormControl>
+  return (
+    <>
 
-            </div>
-            {/*  */}
-            <div className="col-sm-4">
-              <TextField type="text" value={lost.address} onChange={(e) => setLost({ ...lost, address: e.target.value })} className='w-100 border-bottom border-3 mb-3' variant='standard' label='Address' />
-              <TextField type="text" value={lost.phoneNumber} onChange={(e) => setLost({ ...lost, phoneNumber: e.target.value })} className="w-100 border-bottom border-0 border-white border-3 mb-3" variant='standard' label='Phone Number' />
-              <label htmlFor="">Add lost Profiles</label>
-              <input type="file" onChange={handleFileChange} multiple className="w-100 border-bottom border-0 border-white border-3 mb-4" />
-            </div>
-            {/*  */}
-            <div className="col-sm-4">
-              <FormControl fullWidth className="mb-3">
-                <InputLabel variant='standard'>Country</InputLabel>
-                <NativeSelect className='w-100 border-bottom border-3'>
-                  <option value={'Rwanda'}>Rwanda</option>
-                  <option value={'Uganda'}>Uganda</option>
-                  <option value={'Burundi'}>Burundi</option>
-                </NativeSelect>
-              </FormControl>
-              <FormControl fullWidth className="mb-2">
-                <InputLabel variant='standard'>Native Country</InputLabel>
-                <NativeSelect onChange={(e) => setLost({ ...lost, nativeCountry: e.target.value })} className='w-100 border-bottom border-3'>
-                  <option value={'Rwanda'}>Rwanda</option>
-                  <option value={'Uganda'}>Uganda</option>
-                  <option value={'Burundi'}>Burundi</option>
-                </NativeSelect>
-              </FormControl>
-              <span className="fw-bolder">Date of birth</span>
-              <TextField type="date" value={lost.dob} onChange={(e) => setLost({ ...lost, dob: e.target.value })} className='w-100 border-bottom border-3 mb-3' variant='standard' />
-            </div>
-      
-            <div className='col-sm-6'>
-            <FormControl fullWidth className="mt-3">
-              <InputLabel variant='standard'>Select case</InputLabel>
-              <NativeSelect className='w-100 border-bottom border-3'>
-              <option value={'Case1'}>Case</option>
-              {response.responseContent.map((data:any,index:number)=>{
-                return <option value={data.id} key={index}>{data.title}</option>
-              })}
-              </NativeSelect>
-            </FormControl>
-           </div>
-           <div className='col-sm-6'>
-           <TextField label='Expected Place of lost' value={lost.dob} onChange={(e) => setLost({ ...lost, dob: e.target.value })} className='w-100 border-bottom border-3 mb-3' variant='standard' />
-           </div>
- 
-          </div>
-          {files.length != 0 && displayFile}
-          </div><div className='mb-1'>Description</div><JoditEditor value=''>
-          </JoditEditor></>}
-          <div className="modal-footer">
-            <Button variant='contained'> 
-              Add Post
+      {!response.responseReady && <div className='text-center'>
+        <ProgressBar />
+      </div>}
+      {response.responseReady && <><Grid container mb={2.3} spacing={5} direction={'row'} sx={{ p: 0 }}>
+
+        <Grid item sm={6}>
+          <Item elevation={0} sx={{ p: 0 }}>
+            <TextField label='Name' className='mb-2' fullWidth variant='standard' onChange={(e) => setLost({ ...lost, name: e.target.value })} value={lost.name} />
+            <label htmlFor="">Gender</label>
+            <NativeSelect className='mb-3' fullWidth variant='standard' onChange={(e) => setLost({ ...lost, gender: e.target.value })}>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </NativeSelect>
+            <TextField className='mb-2' label='Tel' fullWidth variant='standard' onChange={(e) => setLost({ ...lost, phoneNumber: e.target.value })} value={lost.phoneNumber} />
+            <TextField className='mb-2' label='Address' fullWidth variant='standard' onChange={(e) => setLost({ ...lost, address: e.target.value })} value={lost.address} />
+            <label htmlFor="">Current Country</label>
+            <NativeSelect className='mb-2' fullWidth variant='standard' onChange={(e) => setLost({ ...lost, currentCountry: e.target.value })}>
+              <option value="">select country</option>
+              {countries.map(data => <option key={data} value={data}>{data}</option>)}
+            </NativeSelect>
+            <label htmlFor="" className='mt-2'>Native Country</label>
+            <NativeSelect fullWidth variant='standard' onChange={(e) => setLost({ ...lost, currentCountry: e.target.value })}>
+              <option value="">select country</option>
+              {countries.map(data => <option key={data} value={data}>{data}</option>)}
+            </NativeSelect>
+          </Item>
+        </Grid>
+
+        <Grid item sm={6} className='border-2 border-primary  '>
+          <Item sx={{ p: 0 }} elevation={0} className='border-2 border-primary'>
+            <Button className='mb-4'
+              component="label"
+              role={undefined}
+              variant="contained"
+              tabIndex={-1}
+              startIcon={<CloudUpload />}
+            >
+              Upload picture of lost
+              <VisuallyHiddenInput onChange={handleFileChange} type="file" />
             </Button>
-          </div>
-        </>
-    )
+            <TextField className='mb-2' InputLabelProps={{ shrink: true }} type='date' label='Date of birth' fullWidth variant='standard' onChange={(e) => setLost({ ...lost, name: e.target.value })} value={lost.name} />
+            <section className='mb-2'>
+              <label>Country of lost</label>
+              <NativeSelect defaultValue={''} fullWidth variant='standard' onChange={(e) => setLost({ ...lost, countryOfLost: e.target.value })} value={lost.countryOfLost} >
+                <option value="">Select country</option>
+                {countries.map(data => <option key={data} value={data}>{data}</option>)}
+              </NativeSelect>
+            </section>
+            <section>
+              <TextField className='mb-2' InputLabelProps={{ shrink: true }} type='text' label='Expected Address of lost' fullWidth variant='standard' onChange={(e) => setLost({ ...lost, expectedAddress: e.target.value })} value={lost.expectedAddress} />
+            </section>
+            <label htmlFor="" className='mb-2'>Select Case</label>
+            <NativeSelect fullWidth variant='standard' onChange={(e) => setLost({ ...lost, currentCountry: e.target.value })}>
+              <option value="">select Case</option>
+              {result.data!=undefined&&result.data.caseList!=undefined
+              &&result.data.caseList.length!=0
+              &&result.data.caseList.map((data:any)=><option key={data.id} value={data.id}>{data.title}</option>)}
+            </NativeSelect>
+            <TextField className='mt-3' fullWidth label='Relationship' variant='standard' InputLabelProps={{ shrink: true }} />
+          </Item>
+        </Grid>
+      </Grid>
+        {files.length != 0 && displayFile}
+        <div className='mb-1'>Description</div><JoditEditor value=''>
+        </JoditEditor></>}
+      <div className="modal-footer">
+        <Button variant='contained'>
+          Add Post
+        </Button>
+      </div>
+    </>
+  )
 }
