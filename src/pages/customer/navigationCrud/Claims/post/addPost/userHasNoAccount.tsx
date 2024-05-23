@@ -8,7 +8,11 @@ import { ProgressBar } from '../../../../../../components/ProgressBar';
 import { LostDTO } from '../../../../../../typedefs/visitorInput/lost';
 import { Item } from '../../../../../../object/item';
 import { countries } from '../../../../../../object';
+import { useSaveLost } from '../../../../../../controller/lost/mutation';
 export const ClaimUserHasNoAccount = () => {
+  const userStorage=localStorage.getItem('user');
+  const user=JSON.parse(String(userStorage));
+  alert(user.id)
   const [lost, setLost] = useState<LostDTO>({
     id: '',
     name: '',
@@ -23,10 +27,15 @@ export const ClaimUserHasNoAccount = () => {
     expectedAddress: '',
     relationShip: '',
     hasFound: false,
-    customerId: 0,
-    caseId: 0,
+    customerId: Number(user.id),
+    caseId:0,
     description: ''
   });
+  const {saveHandler}=useSaveLost(lost);
+  const saveLostHandler=()=>{
+    saveHandler().then(data=>alert(data.data.saveLost))
+    .catch(err=>console.log(err));
+  }
   const { response,result } = useCaseList();
   const [files, setFiles] = useState<any>([]);
   useEffect(() => {
@@ -134,7 +143,7 @@ export const ClaimUserHasNoAccount = () => {
               Upload picture of lost
               <VisuallyHiddenInput onChange={handleFileChange} type="file" />
             </Button>
-            <TextField className='mb-2' InputLabelProps={{ shrink: true }} type='date' label='Date of birth' fullWidth variant='standard' onChange={(e) => setLost({ ...lost, name: e.target.value })} value={lost.name} />
+            <TextField className='mb-2' InputLabelProps={{ shrink: true }} type='date' label='Date of birth' fullWidth variant='standard' onChange={(e) => setLost({ ...lost, dob: e.target.value })} value={lost.dob} />
             <section className='mb-2'>
               <label>Country of lost</label>
               <NativeSelect defaultValue={''} fullWidth variant='standard' onChange={(e) => setLost({ ...lost, countryOfLost: e.target.value })} value={lost.countryOfLost} >
@@ -146,7 +155,7 @@ export const ClaimUserHasNoAccount = () => {
               <TextField className='mb-2' InputLabelProps={{ shrink: true }} type='text' label='Expected Address of lost' fullWidth variant='standard' onChange={(e) => setLost({ ...lost, expectedAddress: e.target.value })} value={lost.expectedAddress} />
             </section>
             <label htmlFor="" className='mb-2'>Select Case</label>
-            <NativeSelect fullWidth variant='standard' onChange={(e) => setLost({ ...lost, currentCountry: e.target.value })}>
+            <NativeSelect fullWidth variant='standard' onChange={(e) => setLost({ ...lost, caseId: Number(e.target.value)  })}>
               <option value="">select Case</option>
               {result.data!=undefined&&result.data.caseList!=undefined
               &&result.data.caseList.length!=0
@@ -160,7 +169,7 @@ export const ClaimUserHasNoAccount = () => {
         <div className='mb-1'>Description</div><JoditEditor value=''>
         </JoditEditor></>}
       <div className="modal-footer">
-        <Button variant='contained'>
+        <Button onClick={()=>saveLostHandler()} variant='contained'>
           Add Post
         </Button>
       </div>
