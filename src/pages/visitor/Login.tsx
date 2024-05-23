@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom'
 export const Login = () => {
+    const userCredential={
+        id:216
+    }
+    localStorage.setItem('user',JSON.stringify(userCredential));
     return (
         <>
             <div className="card p-0 rounded-0 border-0 bg-dark text-white sticky-top sticky-bottom overflow-auto w-100 h-100" style={{
