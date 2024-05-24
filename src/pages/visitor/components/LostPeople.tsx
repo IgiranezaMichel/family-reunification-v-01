@@ -1,42 +1,48 @@
-import { LocationOn, MessageSharp, Person, Report } from "@material-ui/icons"
-import { Button, Card } from "@mui/material"
-
-export const LostPeople = () => {
-    return (
-        <main className="container-lg mb-4">
-            <div className="display-6 text-center fw-bold">Let's find your loved one</div>
-            <section className="row col-12 g-2 m-auto mt-3">
-                <div className="col-md-3">
-                    <Card elevation={8} className="col-12 rounded-0 border-top border-5 border-primary">
-                        <div className="text-center">
-                            <Button className="bg-primary text-white fw-bold rounded-0">
-                                <LocationOn /> Rwandan
-                            </Button>
-                        </div>
-                        <img src="/Visitor/baby-sitting.png" className="card-img" alt="" />
-                        <dt className="mx-3">
-                            <dd>
-                            <Person/> Name
-                            </dd>
-                            <dd>
-                                <span style={{fontFamily:'sans-serif'}}>Born date</span>
-                            </dd>
-                            <dd>
-                                <span style={{fontFamily:'sans-serif'}}>Father </span>
-                            </dd>
-                            <dd>
-                                <span style={{fontFamily:'sans-serif'}}>Mother </span>
-                            </dd>
-                            <dd>
-                                <span style={{fontFamily:'sans-serif'}}>Place</span>
-                            </dd>
-                        </dt>
-                        <div className="modal-footer">
-                            <MessageSharp className="m-1"/><Report className="m-1"/>
-                        </div>
-                    </Card>
-                </div>
-            </section>
-        </main>
-    )
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Box from '@mui/material/Box';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import { useLost } from '../../../controller/lost/query';
+import { Avatar, Button, Typography } from '@mui/material';
+import { LocationOn, Person } from '@material-ui/icons';
+import './index.css'
+import { Link } from 'react-router-dom';
+export default function LostPeople() {
+    const {response}=useLost();
+  return (
+    <section className=''>
+    <Typography variant='h4' sx={{width: {sm:'100%',md:'80%',lg:'70%'}}} className='fw-bold display-6 m-auto'>
+        Recent Lost people
+    </Typography>
+    <Box sx={{ width: {sm:'100%',md:'80%',lg:'70%',margin:'auto'}, height: '100%',overflow:'hidden'}}>
+      <ImageList variant="masonry" cols={3} gap={8}>
+        {response.responseReady&&response.responseContent!=undefined&&response.responseContent.length!=0&&
+        response.responseContent.map((item:any) => (
+          <section className="">
+            <ImageListItem key={item.id} className='border border-2'>
+            <main className='card p-0 border-0 rounded-0 bg-transparent'>
+            <img className='card-img rounded-0'
+              src={item.profile}
+              alt={item.title}
+              loading="lazy"
+            />
+            <ImageListItemBar position="top" title={<div className='d-flex'><Avatar src={item.postedBy.profilePicture}/><div className='card d-flex justify-content-center bg-transparent text-white border-0 align-items-center'><small>{item.postedBy.firstName} {item.postedBy.lastName}</small></div></div>} />
+            <ImageListItemBar position="below" title={<>
+                <div><Person/>{item.name}</div>
+                <div><LocationOn/>{item.address}</div>
+            </>} />
+            <div className="card-img-overlay rounded-0 ui-visiter-presentable-img justify-content-center align-items-center">
+            <Link to={'/login'}><Button variant='contained'>Login</Button></Link>
+          </div>
+            </main>
+          </ImageListItem>
+         
+          </section>
+        ))}
+      </ImageList>
+    </Box>
+    </section>
+  );
 }
+
