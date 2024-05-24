@@ -12,7 +12,6 @@ import { useSaveLost } from '../../../../../../controller/lost/mutation';
 export const ClaimUserHasNoAccount = () => {
   const userStorage=localStorage.getItem('user');
   const user=JSON.parse(String(userStorage));
-  alert(user.id)
   const [lost, setLost] = useState<LostDTO>({
     id: '',
     name: '',
@@ -44,7 +43,7 @@ export const ClaimUserHasNoAccount = () => {
     const fileList = event.target.files;
     const filesArray = Array.from(fileList);
     Promise.all(filesArray.map(file => readFileData(file)))
-      .then(base64Array => { setFiles(base64Array) });
+      .then(base64Array => { setFiles(base64Array);setLost({...lost,base64Profile:(base64Array[0].base64Data as string)})});
   };
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
