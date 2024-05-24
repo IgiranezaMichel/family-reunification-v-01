@@ -1,0 +1,10 @@
+.bg-transparent .ui-visiter-presentable-img{
+    display: none !important;
+}
+.bg-transparent:hover .ui-visiter-presentable-img{
+    display: flex !important;
+    background-color: #06171d8a;
+    justify-content: center;
+    align-items: center;
+    
+}
