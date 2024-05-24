@@ -16,6 +16,7 @@ return (
           <Route path="/sign-up" element={<Signup/>} />
           <Route path="/admin" element={<Admin/>} />
           <Route path="/user" element={<Customer/>} />
+          <Route path="*" element={<Customer/>} />
         </Routes>
       </div>
       </Router>
