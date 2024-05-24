@@ -1,7 +1,7 @@
-import { useMutation } from "@apollo/client"
-import { CaseInput } from "../../typedefs/cases"
-import { DELETE_CASE, REGISTER_CASE } from "../../graphql/mutation/cases"
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
+import { DELETE_CASE, REGISTER_CASE } from "../../graphql/mutation/cases";
+import { CaseInput } from "../../typedefs/cases";
 import { Response } from "../../typedefs/response";
 
 export const useSaveCases=(caseInput:CaseInput,customerId:number)=>{
