@@ -30,11 +30,11 @@ export const Signup = () => {
             reader.readAsDataURL(file);
         }
     }
-    const { saveHandler} = useSaveCustomer(user);
+    const { saveHandler } = useSaveCustomer(user);
     const saveUserHandler = () => {
         saveHandler().then(
-        (data)=>{alert(data.data.saveCustomer)}
-        ).catch((err)=>console.log(err));
+            (data) => { alert(data.data.saveCustomer) }
+        ).catch((err) => console.log(err));
     }
     return (
         <>
@@ -90,16 +90,16 @@ export const Signup = () => {
                         <div className="col-sm-4">
                             <FormControl fullWidth className="mb-3">
                                 <InputLabel variant='standard'>Country</InputLabel>
-                                <NativeSelect componentsProps={{input:{color:'blue'}}} className='w-100 border-bottom border-3'>
+                                <NativeSelect componentsProps={{ input: { color: 'blue' } }} className='w-100 border-bottom border-3'>
                                     <option value={''}>select country</option>
-                                     {countries.map(data=><option key={data} value={data}>{data}</option>)}
+                                    {countries.map(data => <option key={data} value={data}>{data}</option>)}
                                 </NativeSelect>
                             </FormControl>
                             <FormControl fullWidth className="mb-4">
                                 <InputLabel variant='standard'>Native Country</InputLabel>
                                 <NativeSelect onChange={(e) => setUser({ ...user, nativeCountry: e.target.value })} className='w-100 border-bottom border-3'>
                                     <option value={''}>select country</option>
-                                    {countries.map(data=><option key={data} value={data}>{data}</option>)}
+                                    {countries.map(data => <option key={data} value={data}>{data}</option>)}
                                 </NativeSelect>
                             </FormControl>
                             <div className="mb-3">
