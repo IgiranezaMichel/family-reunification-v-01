@@ -1,3 +1,4 @@
+import { Button, TextField } from '@mui/material';
 import { Link } from 'react-router-dom'
 export const Login = () => {
     const userCredential={
@@ -34,14 +35,14 @@ export const Login = () => {
                         <div className="mt-5">
                             <span className="fw-bolder">Username</span>
                             <div className="mb-3">
-                                <input type="text" className="w-100 border-bottom border-0 border-white border-3 bg-transparent" />
+                                <TextField variant='standard' type="text" className="w-100 border-bottom border-0 border-white border-3 bg-transparent" />
                             </div>
                             <span className="fw-bolder">Password</span>
                             <div className="mb-3">
-                                <input type="text" className="w-100 border-bottom border-0 border-white border-3 bg-transparent" />
+                                <TextField variant='standard' type="text" className="w-100 border-bottom border-0 border-white border-3 bg-transparent" />
                             </div>
-                            <span>Don't have account ? <Link to={'/signup'} className='fw-bolder text-success'>Sign up</Link></span>
-                            <button type="button" className="btn btn-outline-light d-block w-100">Submit</button>
+                            <span>Don't have account ? <Link to={'/sign-up'} className='fw-bolder text-success'>Sign up</Link></span>
+                            <Button variant='contained' type="button" className="btn mt-2 btn-outline-light d-block w-100">Submit</Button>
                         </div>
                     </div>
                 </div>
