@@ -3,8 +3,8 @@ import { Navigation } from "../../components/Navigation"
 import { VisitorUrl } from "../../url/VisitorsUrl"
 import { VisitorBody } from "./components/VisitorBody"
 import { VisitorOverBody } from "./components/VisitorOverBody"
-import { LostPeople } from "./components/LostPeople"
 import { Footer } from "../../components/Footer"
+import LostPeople from "./components/LostPeople"
 export const Index = () => {
     return (
         <>
