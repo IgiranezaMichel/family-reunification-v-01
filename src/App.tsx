@@ -5,6 +5,7 @@ import { Index } from './pages/visitor'
 import { Login } from './pages/visitor/Login'
 import { Signup } from './pages/visitor/Signup'
 import 'react-toastify/dist/ReactToastify.css';
+import { LostDetail } from './pages/customer/navigationCrud/Claims/post/lostDetail'
 function App() {
 return (
 <>
@@ -16,6 +17,7 @@ return (
           <Route path="/sign-up" element={<Signup/>} />
           <Route path="/admin" element={<Admin/>} />
           <Route path="/user" element={<Customer/>} />
+          <Route path="/a" element={<LostDetail/>} />
           <Route path="*" element={<Customer/>} />
         </Routes>
       </div>
