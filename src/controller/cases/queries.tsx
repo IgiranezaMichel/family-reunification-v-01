@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useQuery } from "@apollo/client"
-import { LIST_OF_CASE } from "../../graphql/query/cases"
 import { useEffect, useState } from "react";
+import { LIST_OF_CASE } from "../../graphql/query/cases";
 
 export const useCaseList = () => {
   const result = useQuery(LIST_OF_CASE);
