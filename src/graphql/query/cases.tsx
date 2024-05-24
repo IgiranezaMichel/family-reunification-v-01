@@ -1,23 +1,15 @@
 import { gql } from "@apollo/client";
 
-export const LIST_OF_CASE = gql`
-query{
-  caseList{
+export const LIST_OF_CASE=gql`
+query{caseList{
+  id
+  title
+  description
+  customer{
     id
-    title
-    description
-    timeStamp
-    customer{
-      firstName
-      lastName
-      profilePicture
-      email
-      phoneNumber
-      userDob
-      address
-      country 
-      role
-    }
+    firstName
+    lastName
   }
-}
+  role
+}}
 `
