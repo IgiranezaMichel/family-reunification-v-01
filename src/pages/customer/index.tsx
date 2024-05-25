@@ -39,20 +39,7 @@ export const Customer = () => {
                                         style={{ transform: url == 'claims' ? 'translate(0px,29px)' : '' }}>
                                         <span className="nav-link fw-bold">My Claims</span>
                                     </li>
-                                    <li onClick={() => setUrl('location')}
-                                        className={url == 'location' ? active : ''}
-                                        style={{ transform: url == 'location' ? 'translate(0px,29px)' : '' }}>
-                                        <span className="nav-link fw-bold" aria-current="page">
-                                            Location
-                                        </span>
-                                    </li>
-                                    <li onClick={() => setUrl('family')}
-                                        className={url == 'family' ? active : ''}
-                                        style={{ transform: url == 'family' ? 'translate(0px,29px)' : '' }}>
-                                        <span className="nav-link fw-bold" aria-current="page"
-                                        >My Family
-                                        </span>
-                                    </li>
+
                                     <li onClick={() => setUrl('chat')}
                                         className={url == 'chat' ? active : ''}
                                         style={{ transform: url == 'chat' ? 'translate(0px,29px)' : '' }}>
