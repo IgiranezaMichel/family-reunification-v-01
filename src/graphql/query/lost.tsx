@@ -82,3 +82,15 @@ query($customerId:ID){
   
 }}
 `
+export const LOST_PAGE=gql`
+query($lost:LostPageInput){
+lostPageable(input:$lost){
+ pageNumber
+  totalPage
+  total
+  content{
+    name
+    gender
+  }
+}}
+`
