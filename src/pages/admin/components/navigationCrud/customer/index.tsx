@@ -21,7 +21,7 @@ export const CustomerCrud = () => {
                 return <TableRow key={index} className="border border-4 border-white">
                     <TableCell className="col-2 rounded-0">
                         <section className="d-flex">
-                            <Avatar src={'data:image/png;base64,' + result.profilePicture} />
+                            <Avatar src={result.profilePicture} />
                             <div className="text-center card d-flex justify-content-center bg-transparent border-0">
                                 <b className="m-auto">{result.firstName} {result.lastName}</b>
                             </div>
