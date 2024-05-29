@@ -1,10 +1,30 @@
 import { Button, TextField } from '@mui/material';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 export const Login = () => {
-    const userCredential={
-        id:216
-    }
-    localStorage.setItem('user',JSON.stringify(userCredential));
+    const username = 'michel@auca.ac.rw';
+    useEffect(
+        () => {
+            const fetchData = async () => {
+                return await fetch("http://localhost:8080/login?username=" + username, {
+                    method: 'POST'
+                })
+            }
+            fetchData().then(data => data.json().then(responseData => {localStorage.setItem('user', JSON.stringify(
+                {
+                    id: responseData.id,
+                    name: responseData.firstName + " " + responseData.lastName,
+                    email: responseData.email,
+                    tel: responseData.phoneNumber
+                }
+            ));
+            localStorage.setItem('profilePicture',responseData.profilePicture)
+
+        }
+        ))
+                .catch(err => console.log(err))
+        }
+    )
     return (
         <>
             <div className="card p-0 rounded-0 border-0 bg-dark text-white sticky-top sticky-bottom overflow-auto w-100 h-100" style={{
