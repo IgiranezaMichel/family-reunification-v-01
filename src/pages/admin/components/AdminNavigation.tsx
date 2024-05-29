@@ -14,6 +14,7 @@ import { Logout } from "../../../components/logout";
 
 export const AdminNavigation = () => {
     const [activeNav, setActiveNav] = useState('home');
+    const userDetail=JSON.parse(String(localStorage.getItem('user')));
     const activeIconClass = 'fs-1 text-white m-1 bg-primary rounded-circle p-1 border border-2 border-white';
     const inactiveIconClass = 'fs-1 text-white m-1 bg-danger rounded-circle p-1 border border-2 border-white';
     const activeClass = 'border-bottom border-4 border-primary fw-bolder p-1 d-block';
@@ -21,14 +22,13 @@ export const AdminNavigation = () => {
     useEffect(()=>{
     
     },[myContext])
-    console.log(myContext)
     return (
         <ModalContext.Provider value={myContext}>
             <AdminBody active={activeNav}/>
             <section>
             <section className="sticky-top top-0">
             <nav className="bg-primary text-white p-2">
-                <div className="fw-bold"><Person className="fs-1 rounded-circle text-dark p-1 bg-white" /> user name</div>
+                <div className="fw-bold"><Person className="fs-1 rounded-circle text-dark p-1 bg-white mx-2" />{userDetail.name}</div>
             </nav>
             <div className="modal-footer" style={{ transform: 'translate(0px,-25px)' }}>
                 <Home className={activeNav == 'home' ? activeIconClass : inactiveIconClass} />
