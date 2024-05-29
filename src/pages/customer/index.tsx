@@ -1,13 +1,14 @@
 import { Avatar, Divider } from "@mui/material"
 import { useState } from "react"
 import { Navigation } from "../../components/Navigation"
-import { Setting } from "../../components/settings"
 import { userUrl } from "../../url/userUrl"
 import { Chat } from "./navigation/chat"
 import { Claim } from "./navigation/claim"
 import { MyFamily } from "./navigation/family"
+import { Setting } from "../../components/settings"
 
 export const Customer = () => {
+    const userDetail=JSON.parse(String(localStorage.getItem('user')));
     const [url, setUrl] = useState('claims');
     const active='nav-item bg-info border border-3 border-white';
     return (
@@ -56,7 +57,7 @@ export const Customer = () => {
                                     </li>
                                 </ul>
                                 <div className="d-flex my-2 my-lg-0">
-                                    <Avatar /><div className="card mx-1 bg-transparent border-0 justify-content-center fw-bold">Igiraneza Joel</div>
+                                    <Avatar /><div className="card mx-1 bg-transparent border-0 justify-content-center fw-bold">{userDetail.name}</div>
                                 </div>
                             </div>
                         </div>
