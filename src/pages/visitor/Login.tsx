@@ -2,7 +2,7 @@ import { Button, TextField } from '@mui/material';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 export const Login = () => {
-    const username = 'michel@auca.ac.rw';
+    const username = 'michel.igiraneza@auca.ac.rw';
     useEffect(
         () => {
             const fetchData = async () => {
