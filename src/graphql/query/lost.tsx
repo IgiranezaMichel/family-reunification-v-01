@@ -79,10 +79,18 @@ query($customerId:ID){
     description
     timeStamp
   }
-  
+  lostComments{
+    comment
+    customer{
+      firstName
+      lastName
+      phoneNumber
+      profilePicture
+    }
+  }
 }}
 `
-export const LOST_PAGE=gql`
+export const LOST_PAGE = gql`
 query($lost:LostPageInput){
 lostPageable(input:$lost){
  pageNumber
