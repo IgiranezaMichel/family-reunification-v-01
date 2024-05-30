@@ -60,8 +60,7 @@ export default function UnstyledTabsIntroduction() {
         <TabsList>
           <Tab value={0}>All posts</Tab>
           <Tab value={1}>My Posts</Tab>
-          <Tab value={2}>My Family Posts</Tab>
-          <Tab value={3}>Recent found</Tab>
+          <Tab value={2}>Recent found</Tab>
         </TabsList>
         <Paper>
 
