@@ -6,7 +6,6 @@ import { buttonClasses } from '@mui/base/Button';
 import { Tab as BaseTab, tabClasses } from '@mui/base/Tab';
 import { AllPost } from './post/allPosts';
 import { CustomerPost } from './post/customerPosts';
-import { FamilyPost } from './post/myFamilyPosts';
 import LostFound from './post/LostFound';
 import { Button, Card, FormControl, InputLabel, NativeSelect, Pagination, Paper, TextField } from '@mui/material';
 import { FeedbackOutlined, HourglassEmptyRounded, ThumbsUpDown } from '@material-ui/icons';
@@ -88,8 +87,7 @@ export default function UnstyledTabsIntroduction() {
               data-bs-target="#newPost">claim lost</Button>
           <TabPanel value={0}><AllPost /></TabPanel>
           <TabPanel value={1}><CustomerPost /></TabPanel>
-          <TabPanel value={2}><FamilyPost /></TabPanel>
-          <TabPanel value={3}><LostFound /></TabPanel>
+          <TabPanel value={2}><LostFound /></TabPanel>
         </Paper>
       </Tabs>
       <NewPost/>
