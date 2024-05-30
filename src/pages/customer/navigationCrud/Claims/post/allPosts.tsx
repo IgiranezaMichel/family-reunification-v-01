@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ArrowForwardRounded, Close, LocationOn, MessageTwoTone, Person } from "@material-ui/icons"
+import { ArrowForwardRounded, Close, LocationOn, Person } from "@material-ui/icons"
 import { Avatar, Box, Button, Dialog, Grid, Paper, styled } from "@mui/material"
 import { useLost } from "../../../../../controller/lost/query"
 import { useState } from "react";
@@ -35,10 +35,8 @@ export const AllPost = () => {
                                 <p><Person />{data.name}</p>
                                 <p><LocationOn />{data.address}</p>
                                 <p className="modal-footer mx-2"><small >{data.currentCountry}</small></p>
-                                <Box className="d-flex justify-content-between">
-                                    <Button>
-                                        <MessageTwoTone />
-                                    </Button>
+                                <Box className="modal-footer">
+                                   
                                     <Button onClick={()=>{setCustomerId(data.id);setShowLostDetail(true)}} sx={{':hover':{transition:'all 0.4s ease-out',scale:'1.2'}}}>
                                         <ArrowForwardRounded />
                                     </Button>
