@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ArrowForward, Close } from "@material-ui/icons"
+import { ArrowForward, Close, ContactSupport } from "@material-ui/icons"
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator, timelineItemClasses } from "@mui/lab"
 import { Avatar, Button, Dialog, Tooltip, Typography } from "@mui/material"
 import { useCustomerLostPost } from "../../../../../controller/lost/query"
@@ -39,15 +39,20 @@ export const CustomerPost = () => {
                                 <small >{data.timeStamp}</small>
                             </Typography>
                             <div style={{ clear: 'both' }} className="modal-footer border-0">
+                                {!data.hasFound && <Tooltip title={<><b>{data.name}</b> has found?</>} arrow>
+                                    <Button><ContactSupport /></Button>
+                                </Tooltip>}
+                                <Tooltip title={<><b>{data.name}</b> details</>}>
                                 <Button onClick={() => { setCustomerId(data.id); setShowLostDetail(true) }}><ArrowForward />  </Button>
+                                </Tooltip>
                             </div>
                         </TimelineContent>
                     </TimelineItem>
                 </Timeline>)}
-                {response.responseReady && response.responseContent != undefined &&
-                response.responseContent.length == 0&&<div className="text-center p-5 bg-body-secondary">
+            {response.responseReady && response.responseContent != undefined &&
+                response.responseContent.length == 0 && <div className="text-center p-5 bg-body-secondary">
                     No Post found
-                    </div>}
+                </div>}
             <Dialog open={showLostDetail} maxWidth='md' PaperProps={{ className: 'col-12 rounded-0' }}>
                 <LostDetail customerId={customerId}>
                     <div className="p-3 fw-bold sticky-top bg-white">Details <Close onClick={() => setShowLostDetail(false)} className="float-end" /></div>
