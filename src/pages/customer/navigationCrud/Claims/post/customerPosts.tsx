@@ -8,8 +8,8 @@ import { useState } from "react"
 export const CustomerPost = () => {
     const user = JSON.parse(String(localStorage.getItem('user')));
     const { response } = useCustomerLostPost(Number(user.id));
-    const [customerId,setCustomerId]=useState('');
-    const [showLostDetail,setShowLostDetail]=useState(false);
+    const [customerId, setCustomerId] = useState('');
+    const [showLostDetail, setShowLostDetail] = useState(false);
     return (
         <>
             {response.responseReady && response.responseContent != undefined &&
@@ -39,16 +39,20 @@ export const CustomerPost = () => {
                                 <small >{data.timeStamp}</small>
                             </Typography>
                             <div style={{ clear: 'both' }} className="modal-footer border-0">
-                                <Button onClick={()=>{setCustomerId(data.id);setShowLostDetail(true)}}><ArrowForward />  </Button>
+                                <Button onClick={() => { setCustomerId(data.id); setShowLostDetail(true) }}><ArrowForward />  </Button>
                             </div>
                         </TimelineContent>
                     </TimelineItem>
                 </Timeline>)}
-                <Dialog open={showLostDetail} maxWidth='md' PaperProps={{className:'col-12 rounded-0'}}>
-                    <LostDetail customerId={customerId}>
-                    <div className="p-3 fw-bold sticky-top bg-white">Details <Close onClick={()=>setShowLostDetail(false)} className="float-end"/></div>
-                    </LostDetail>
-                </Dialog>
+                {response.responseReady && response.responseContent != undefined &&
+                response.responseContent.length == 0&&<div className="text-center p-5 bg-body-secondary">
+                    No Post found
+                    </div>}
+            <Dialog open={showLostDetail} maxWidth='md' PaperProps={{ className: 'col-12 rounded-0' }}>
+                <LostDetail customerId={customerId}>
+                    <div className="p-3 fw-bold sticky-top bg-white">Details <Close onClick={() => setShowLostDetail(false)} className="float-end" /></div>
+                </LostDetail>
+            </Dialog>
         </>
     )
 }
